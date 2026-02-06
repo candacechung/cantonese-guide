@@ -1,1 +1,1502 @@
-# Cantonese-guide
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Explorer Academy</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Microsoft JhengHei', cursive;
+            background-color: #fff5f5;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px #ff4757;
+            border: 4px solid #2f3542;
+        }
+        h1 { text-align: center; color: #ff4757; font-size: 2.5rem; text-shadow: 2px 2px #ffcccc; }
+        h2 { color: #2f3542; background: #dfe4ea; padding: 10px; border-radius: 10px; border-left: 10px solid #ff4757; }
+        
+        .character { font-size: 1.4rem; color: #ff4757; font-weight: bold; }
+        
+        .interactive-box {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 3px solid #ffa502;
+        }
+        button {
+            background-color: #ffa502;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px #e67e22;
+            transition: 0.2s;
+            margin: 5px;
+        }
+        button:active { transform: translateY(2px); box-shadow: 0 2px #e67e22; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .food-item { background: #f7f1e3; padding: 15px; border-radius: 15px; border: 1px solid #d1ccc0; line-height: 1.4; }
+        
+        #quiz-result { margin-top: 15px; font-weight: bold; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🇭🇰 廣東話 Cantonese Academy</h1>
+    
+    <div class="interactive-box">
+        <h3>🎯 Word of the Moment</h3>
+        <p>Click to see the character and the sound!</p>
+        <button onclick="getPhrase()">Random Word!</button>
+        <div id="display-area" style="font-size: 1.8rem; margin-top:15px;">你好 (Neih hou)</div>
+    </div>
+
+    <h2>🔢 Counting Numbers</h2>
+    <div class="grid">
+        <div>1: <span class="character">一</span> (Yat)</div>
+        <div>2: <span class="character">二</span> (Yih)</div>
+        <div>3: <span class="character">三</span> (Saam)</div>
+        <div>4: <span class="character">四</span> (Sei)</div>
+        <div>5: <span class="character">五</span> (Ng)</div>
+        <div>6: <span class="character">六</span> (Luk)</div>
+        <div>7: <span class="character">七</span> (Chat)</div>
+        <div>8: <span class="character">八</span> (Baat)</div>
+        <div>9: <span class="character">九</span> (Gau)</div>
+        <div>10: <span class="character">十</span> (Sap)</div>
+    </div>
+
+    <h2>🥟 Dim Sum Menu (點心)</h2>
+    <div class="grid">
+        <div class="food-item"><span class="character">蝦餃</span><br><b>Haa Gau</b> (Shrimp Dumpling)</div>
+        <div class="food-item"><span class="character">燒賣</span><br><b>Siu Maai</b> (Pork Dumpling)</div>
+        <div class="food-item"><span class="character">叉燒包</span><br><b>Chaa Siu Baau</b> (BBQ Pork Bun)</div>
+        <div class="food-item"><span class="character">蛋撻</span><br><b>Daan Taat</b> (Egg Tart)</div>
+    </div>
+
+    <div class="interactive-box" style="background-color: #ced6e0;">
+        <h3>🧠 Mini Quiz!</h3>
+        <p>What is the Cantonese word for <b>"Delicious"</b>?</p>
+        <button onclick="checkQuiz('Haa Gau')">Haa Gau</button>
+        <button onclick="checkQuiz('Hou-sek')">Hou-sek</button>
+        <button onclick="checkQuiz('Zoi-gin')">Zoi-gin</button>
+        <div id="quiz-result"></div>
+    </div>
+
+    <script>
+        const words = [
+            {c: "你好", s: "Neih hou", e: "Hello"},
+            {c: "唔該", s: "M-goi", e: "Thank you"},
+            {c: "好食", s: "Hou-sek", e: "Delicious"},
+            {c: "再見", s: "Zoi-gin", e: "Goodbye"},
+            {c: "多謝", s: "Doh-je", e: "Thank you (Gift)"}
+        ];
+
+        function getPhrase() {
+            const item = words[Math.floor(Math.random() * words.length)];
+            document.getElementById('display-area').innerHTML = 
+                `<span class="character">${item.c}</span> (${item.s}) <br><small>${item.e}</small>`;
+        }
+
+        function checkQuiz(answer) {
+            const result = document.getElementById('quiz-result');
+            if(answer === 'Hou-sek') {
+                result.innerText = "✅ Correct! You're a natural!";
+                result.style.color = "green";
+            } else {
+                result.innerText = "❌ Try again! Hint: It starts with 'Hou'";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</div>
+
+</body>
+
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Explorer Academy</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Microsoft JhengHei', cursive;
+            background-color: #fffcf0;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px #2ed573;
+            border: 4px solid #2f3542;
+        }
+        h1 { text-align: center; color: #ff4757; font-size: 2.5rem; }
+        h2 { color: #2f3542; background: #e8f5e9; padding: 10px; border-radius: 10px; border-left: 10px solid #2ed573; margin-top: 30px; }
+        
+        .draw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .draw-card {
+            border: 2px dashed #ccc;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            background: #fafafa;
+        }
+        .big-char { font-size: 4rem; color: #2f3542; margin: 10px 0; display: block; }
+        .stroke-steps { color: #2ed573; font-weight: bold; font-size: 0.9rem; }
+        
+        .rule-box {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            margin-bottom: 20px;
+        }
+        .canvas-area {
+            border: 1px solid #000;
+            background: #fff;
+            cursor: crosshair;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Explorer Academy</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Microsoft JhengHei', cursive;
+            background-color: #fff5f5;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px #ff4757;
+            border: 4px solid #2f3542;
+        }
+        h1 { text-align: center; color: #ff4757; font-size: 2.5rem; text-shadow: 2px 2px #ffcccc; }
+        h2 { color: #2f3542; background: #dfe4ea; padding: 10px; border-radius: 10px; border-left: 10px solid #ff4757; margin-top: 30px; }
+        
+        .character { font-size: 2rem; color: #ff4757; font-weight: bold; }
+        .radical-tag { background: #ff4757; color: white; padding: 2px 8px; border-radius: 5px; font-size: 0.8rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .element-card { 
+            background: #ffffff; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 2px solid #2f3542; 
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .element-card:hover { transform: scale(1.05); }
+
+        /* Five Elements Special Colors */
+        .gold { border-color: #ffd700; background: #fffdf0; }
+        .wood { border-color: #2ed573; background: #f0fff4; }
+        .water { border-color: #1e90ff; background: #f0f7ff; }
+        .fire { border-color: #ff4757; background: #fff5f5; }
+        .earth { border-color: #8b4513; background: #fdf5e6; }
+        
+        .interactive-box {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 3px solid #ffa502;
+        }
+        button {
+            background-color: #ffa502;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px #e67e22;
+            transition: 0.2s;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🇭🇰 廣東話 Cantonese Academy</h1>
+
+    <h2>✨ 10 Essential Characters</h2>
+    <p>These are the building blocks of the language!</p>
+    <div class="grid">
+        <div class="element-card"><span class="character">一</span><br><b>Yat</b> (One)</div>
+        <div class="element-card"><span class="character">人</span><br><b>Yahn</b> (Person)</div>
+        <div class="element-card"><span class="character">大</span><br><b>Daai</b> (Big)</div>
+        <div class="element-card"><span class="character">小</span><br><b>Siu</b> (Small)</div>
+        <div class="element-card"><span class="character">日</span><br><b>Yaht</b> (Sun/Day)</div>
+        <div class="element-card"><span class="character">月</span><br><b>Yuht</b> (Moon/Month)</div>
+        <div class="element-card"><span class="character">山</span><br><b>Saan</b> (Mountain)</div>
+        <div class="element-card"><span class="character">水</span><br><b>Seui</b> (Water)</div>
+        <div class="element-card"><span class="character">口</span><br><b>Hau</b> (Mouth)</div>
+        <div class="element-card"><span class="character">心</span><br><b>Sam</b> (Heart)</div>
+    </div>
+
+    <h2>🔥 The Five Elements (五行)</h2>
+    <p>In ancient culture, everything in the world is made of these five things!</p>
+    <div class="grid">
+        <div class="element-card gold">
+            <span class="emoji">⚔️</span><span class="character">金</span><br><b>Gam</b> (Gold/Metal)<br>
+            <span class="radical-tag">Radical: 釒</span>
+        </div>
+        <div class="element-card wood">
+            <span class="emoji">🌳</span><span class="character">木</span><br><b>Muhk</b> (Wood)<br>
+            <span class="radical-tag">Radical: 木</span>
+        </div>
+        <div class="element-card water">
+            <span class="emoji">🌊</span><span class="character">水</span><br><b>Seui</b> (Water)<br>
+            <span class="radical-tag">Radical: 氵</span>
+        </div>
+        <div class="element-card fire">
+            <span class="emoji">🔥</span><span class="character">火</span><br><b>Fó</b> (Fire)<br>
+            <span class="radical-tag">Radical: 灬 / 火</span>
+        </div>
+        <div class="element-card earth">
+            <span class="emoji">⛰️</span><span class="character">土</span><br><b>Tou</b> (Earth/Dirt)<br>
+            <span class="radical-tag">Radical: 土</span>
+        </div>
+    </div>
+
+    <div class="interactive-box">
+        <h3>💡 Radical Detective</h3>
+        <p>Radicals are like hints. For example, the <b>Water</b> radical <span class="character" style="font-size: 1.2rem;">氵</span> usually appears in words about liquid!</p>
+        <button onclick="alert('The Water radical 氵 is in the word for Ocean (海)!')">Ocean Hint</button>
+        <button onclick="alert('The Fire radical 灬 is in the word for Boiling (煮)!')">Cooking Hint</button>
+    </div>
+
+    </div>
+
+</body>
+
+<body>
+
+<div class="container">
+    <h1>🖊️ Draw It: The Art of Writing</h1>
+
+    <div class="rule-box">
+        <h3>📏 Golden Rules of Stroke Order:</h3>
+        <ul style="margin: 5px 0;">
+            <li>1. <b>Top to Bottom</b> (Start at the top!)</li>
+            <li>2. <b>Left to Right</b> (Move like you're reading)</li>
+            <li>3. <b>Horizontal then Vertical</b> (Draw "-" before "|")</li>
+        </ul>
+    </div>
+
+    <div class="draw-grid">
+        <div class="draw-card">
+            <span class="stroke-steps">Step 1: ノ | Step 2: 乀</span>
+            <span class="big-char">人</span>
+            <b>Yahn (Person)</b>
+            <p><small>Looks like someone walking!</small></p>
+        </div>
+
+        <div class="draw-card">
+            <span class="stroke-steps">4 Strokes total</span>
+            <span class="big-char">水</span>
+            <b>Seui (Water)</b>
+            <p><small>Start with the middle hook!</small></p>
+        </div>
+
+        <div class="draw-card">
+            <span class="stroke-steps">3 Strokes total</span>
+            <span class="big-char">山</span>
+            <b>Saan (Mountain)</b>
+            <p><small>Draw the middle peak first.</small></p>
+        </div>
+
+        <div class="draw-card">
+            <span class="stroke-steps">4 Strokes (Dots!)</span>
+            <span class="big-char">心</span>
+            <b>Sam (Heart)</b>
+            <p><small>The dots are like heartbeats.</small></p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f1f2f6; border-radius: 20px;">
+        <h3>🖱️ Practice Pad</h3>
+        <p>Use your mouse or finger to practice a character below!</p>
+        <canvas id="paintCanvas" width="300" height="200" class="canvas-area"></canvas>
+        <br>
+        <button onclick="clearCanvas()" style="background:#ff4757; color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Clear Pad</button>
+    </div>
+
+    <script>
+        // Simple Drawing Logic
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        let painting = false;
+
+        function startPosition(e) { painting = true; draw(e); }
+        function finishedPosition() { painting = false; ctx.beginPath(); }
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#2f3542';
+
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', finishedPosition);
+        canvas.addEventListener('mousemove', draw);
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Explorer Academy with Sound</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 { text-align: center; color: #d32f2f; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        .card {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: #ff4757; transform: translateY(-5px); }
+        .char-big { font-size: 3rem; display: block; margin-bottom: 10px; color: #333; }
+        .audio-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .audio-btn:hover { background: #ff6b81; }
+        .hint { color: #666; font-size: 0.9rem; margin-top: 5px; }
+    </style>
+</head>
+
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Master Challenge</title>
+    <style>
+        :root { --red: #ff4757; --blue: #1e90ff; --green: #2ed573; --dark: #2f3542; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', 'Microsoft JhengHei', sans-serif; background: #fdfaf0; color: #333; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 12px 12px 0px var(--red); }
+        h1 { text-align: center; color: var(--red); font-size: 2.5rem; margin-bottom: 5px; }
+        h2 { border-left: 8px solid var(--blue); padding-left: 15px; background: #eef7ff; border-radius: 5px; margin-top: 30px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card { background: white; border: 2px solid #ddd; padding: 15px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .char-big { font-size: 3.5rem; display: block; color: var(--dark); }
+        
+        button { cursor: pointer; border-radius: 50px; border: none; font-weight: bold; transition: 0.2s; padding: 10px 20px; }
+        .listen-btn { background: var(--blue); color: white; margin-top: 10px; }
+        .listen-btn:hover { background: #007ceb; }
+        
+        /* Recording Section */
+        .challenge-box { background: #fff3e0; padding: 25px; border-radius: 20px; border: 3px dashed #ffa502; text-align: center; margin-top: 40px; }
+        .rec-btn { background: var(--red); color: white; font-size: 1.2rem; }
+        .rec-btn:disabled { background: #ccc; }
+        .play-btn { background: var(--green); color: white; margin-left: 10px; }
+        #status { font-weight: bold; color: var(--red); margin: 10px 0; height: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🇭🇰 Cantonese Voice Lab</h1>
+    <p style="text-align: center;">Master characters by listening and mimicking!</p>
+
+    <h2>🌊 The Five Elements (五行)</h2>
+    
+    <div class="grid">
+        <div class="card"><span class="char-big">金</span><b>Gam</b><br><button class="listen-btn" onclick="speak('金')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">木</span><b>Muhk</b><br><button class="listen-btn" onclick="speak('木')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">水</span><b>Seui</b><br><button class="listen-btn" onclick="speak('水')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">火</span><b>Fó</b><br><button class="listen-btn" onclick="speak('火')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">土</span><b>Tou</b><br><button class="listen-btn" onclick="speak('土')">Listen 🔊</button></div>
+    </div>
+
+    <h2>🧠 Essential Characters</h2>
+    <div class="grid">
+        <div class="card"><span class="char-big">心</span><b>Sam</b> (Heart)<br><button class="listen-btn" onclick="speak('心')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">山</span><b>Saan</b> (Mountain)<br><button class="listen-btn" onclick="speak('山')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">口</span><b>Hau</b> (Mouth)<br><button class="listen-btn" onclick="speak('口')">Listen 🔊</button></div>
+        <div class="card"><span class="char-big">人</span><b>Yahn</b> (Person)<br><button class="listen-btn" onclick="speak('人')">Listen 🔊</button></div>
+    </div>
+
+    <div class="challenge-box">
+        <h3>🎙️ Recording Challenge</h3>
+        <p>1. Listen to a character above.<br>2. Press <b>Record</b> and say it yourself!<br>3. Play it back to see if you match the "Listen" button.</p>
+        
+        <div id="status">Ready to practice?</div>
+        
+        <button id="recordBtn" class="rec-btn" onclick="startRecording()">🎤 Start Recording</button>
+        <button id="stopBtn" class="rec-btn" style="background:#444;" onclick="stopRecording()" disabled>⏹️ Stop</button>
+        <button id="playBtn" class="play-btn" onclick="playBack()" disabled>▶️ Play My Voice</button>
+        
+        <p><small>Note: Allow microphone access if prompted!</small></p>
+    </div>
+
+    <script>
+        // --- SPEECH LOGIC ---
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // --- RECORDING LOGIC ---
+        let mediaRecorder;
+        let audioChunks = [];
+        let audioBlob;
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('status').innerText = "Recording Saved!";
+                audioChunks = [];
+            };
+
+            mediaRecorder.start();
+            document.getElementById('recordBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            document.getElementById('status').innerText = "🔴 RECORDING...";
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            document.getElementById('recordBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+        }
+
+        function playBack() {
+            const audio = new Audio(URL.createObjectURL(audioBlob));
+            audio.play();
+            document.getElementById('status').innerText = "Playing back...";
+            audio.onended = () => document.getElementById('status').innerText = "Done!";
+        }
+    </script>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Cantonese Kitchen</title>
+    <style>
+        :root { --meat: #e74c3c; --sea: #3498db; --veg: #27ae60; --fruit: #f39c12; --dessert: #9b59b6; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #fef9e7; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px #34495e; }
+        
+        /* Title color set to Black */
+        h1 { text-align: center; color: black; font-size: 2.5rem; margin-bottom: 0; }
+        p.subtitle { text-align: center; color: #7f8c8d; margin-top: 5px; }
+        
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; display: flex; align-items: center; }
+        h2 span { font-size: 0.9rem; margin-left: 10px; opacity: 0.9; }
+        .meat-h { background: var(--meat); }
+        .sea-h { background: var(--sea); }
+        .veg-h { background: var(--veg); }
+        .fruit-h { background: var(--fruit); }
+        .dessert-h { background: var(--dessert); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 15px; }
+        .card { 
+            background: white; 
+            border: 2px solid #eee; 
+            padding: 20px; 
+            border-radius: 20px; 
+            text-align: center; 
+            position: relative; 
+            transition: all 0.3s ease;
+        }
+        .card:hover { border-color: #bdc3c7; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .char { font-size: 2.5rem; display: block; margin-bottom: 5px; color: #2d3436; font-weight: bold; }
+        .star { position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 1.5rem; filter: grayscale(1); transition: 0.3s; }
+        .star.active { filter: grayscale(0); transform: scale(1.2); }
+
+        .listen-btn { 
+            cursor: pointer; 
+            border-radius: 50px; 
+            border: none; 
+            padding: 8px 15px; 
+            font-weight: bold; 
+            background: #f1f2f6; 
+            margin-top: 10px;
+            color: #2f3542;
+        }
+        .listen-btn:hover { background: #dfe4ea; }
+        .pinyin { color: #e67e22; font-weight: bold; font-size: 1.1rem; }
+        .eng { color: #7f8c8d; font-size: 0.9rem; }
+	.emoji-icon { font-size: 2rem; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>廣東菜 Cantonese Kitchen</h1>
+    <p class="subtitle">Master your food vocabulary! Tap the ⭐ to track your progress.</p>
+
+    <h2 class="meat-h">肉類 Meats <span>(Yuhk Leui)</span></h2>
+    <div class="grid">
+        <div class="card"><span class="emoji-icon">🐮</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">牛肉</span><span class="pinyin">Ngau Yuhk</span><div class="eng">Beef</div><button class="listen-btn" onclick="speak('牛肉')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🐖</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">豬肉</span><span class="pinyin">Zyū Yuhk</span><div class="eng">Pork</div><button class="listen-btn" onclick="speak('豬肉')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🐔</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">雞肉</span><span class="pinyin">Gāi Yuhk</span><div class="eng">Chicken</div><button class="listen-btn" onclick="speak('雞肉')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🐑</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">羊肉</span><span class="pinyin">Yèuhng Yuhk</span><div class="eng">Lamb</div><button class="listen-btn" onclick="speak('羊肉')">Listen 🔊</button></div>
+    </div>
+
+    <h2 class="sea-h">海鮮 Seafood <span>(Hói Sīn)</span></h2>
+    <div class="grid">
+        <div class="card"><span class="emoji-icon">🐟</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">魚</span><span class="pinyin">Yú</span><div class="eng">Fish</div><button class="listen-btn" onclick="speak('魚')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🦐</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">蝦</span><span class="pinyin">Hā</span><div class="eng">Shrimp</div><button class="listen-btn" onclick="speak('蝦')">Listen 🔊</button></div>
+        <div class="card"><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">蜆</span><span class="pinyin">Hín</span><div class="eng">Clams</div><button class="listen-btn" onclick="speak('蜆')">Listen 🔊</button></div>
+    </div>
+
+	<h2 class="veg-h">青菜 Vegetables <span>(Chīng Choi)</span></h2>
+   	<div class="grid">
+		<div class="card">
+            	<span class="star" onclick="toggleStar(this)">⭐</span><span class="char">白菜</span><span class="pinyin">Baahk Choi</span>
+            <div class="eng">Bok Choy</div>
+            <button class="listen-btn" onclick="speak('白菜')">發音 🔊</button>
+        </div>
+        <div class="card">
+            <span class="star" onclick="toggleStar(this)">⭐</span>
+            <span class="char">生菜</span>
+            <span class="pinyin">Sāang Choi</span>
+            <div class="eng">Lettuce</div>
+            <button class="listen-btn" onclick="speak('生菜')">發音 🔊</button>
+        </div>
+    </div>
+
+    <h2 class="fruit-h">水果 Fruits <span>(Seui Gwó)</span></h2>
+    <div class="grid">
+        <div class="card"><span class="emoji-icon">🍎</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">蘋果</span><span class="pinyin">Pìhng Gwó</span><div class="eng">Apple</div><button class="listen-btn" onclick="speak('蘋果')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🍌</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">香蕉</span><span class="pinyin">Hēung Jīu</span><div class="eng">Banana</div><button class="listen-btn" onclick="speak('香蕉')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🍉</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">西瓜</span><span class="pinyin">Sāi Gwā</span><div class="eng">Watermelon</div><button class="listen-btn" onclick="speak('西瓜')">Listen 🔊</button></div>
+    </div>
+
+    <h2 class="dessert-h">甜品 Desserts <span>(Tìhm Bán)</span></h2>
+    <div class="grid">
+        <div class="card"><span class="emoji-icon">🌼</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">雲呢拿</span><span class="pinyin">Wàhn Nēi Làh</span><div class="eng">Vanilla</div><button class="listen-btn" onclick="speak('雲呢拿')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🍫</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">朱古力</span><span class="pinyin">Jyū Gū Līk</span><div class="eng">Chocolate</div><button class="listen-btn" onclick="speak('朱古力')">Listen 🔊</button></div>
+        <div class="card"><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">開心果</span><span class="pinyin">Hōi Sām Gwó</span><div class="eng">Pistachio</div><button class="listen-btn" onclick="speak('開心果')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🍦</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">雪糕</span><span class="pinyin">Syut Gōu</span><div class="eng">Ice Cream</div><button class="listen-btn" onclick="speak('雪糕')">Listen 🔊</button></div>
+        <div class="card"><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">雞尾包</span><span class="pinyin">Gāi Méih Bāau</span><div class="eng">Cocktail Bun</div><button class="listen-btn" onclick="speak('雞尾包')">Listen 🔊</button></div>
+	<div class="card"><span class="star" onclick="toggleStar(this)">⭐</span><span class="char">菠蘿包</span><span class="pinyin">Bō Lòh Bāau</span><div class="eng">Pineapple Bun</div><button class="listen-btn" onclick="speak('菠蘿包')">Listen 🔊</button></div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function toggleStar(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Master Academy</title>
+    <style>
+        :root { --grammar: #6c5ce7; --yes: #2ecc71; --no: #e74c3c; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #f0f3f7; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px var(--grammar); }
+        
+        h1 { text-align: center; color: black; font-size: 2.5rem; }
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; background: var(--grammar); }
+        
+        .grammar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .logic-card { border: 3px solid #ddd; padding: 20px; border-radius: 20px; text-align: center; }
+        .logic-card.positive { border-color: var(--yes); background: #fafff2; }
+        .logic-card.negative { border-color: var(--no); background: #fff5f5; }
+
+        .big-char { font-size: 3.5rem; display: block; font-weight: bold; margin-bottom: 5px; }
+        .label { font-size: 1.2rem; font-weight: bold; display: block; margin-bottom: 10px; }
+        
+        .example-box { background: #f1f2f6; padding: 15px; border-radius: 15px; margin-top: 20px; border-left: 5px solid var(--grammar); }
+        .listen-btn { cursor: pointer; border-radius: 50px; border: none; padding: 10px 20px; font-weight: bold; background: white; border: 2px solid #ddd; margin-top: 10px; }
+        .listen-btn:hover { background: #f1f2f6; }
+
+        .mini-tag { background: var(--dark); color: white; padding: 2px 8px; border-radius: 5px; font-size: 0.8rem; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📝 Grammar Playground</h1>
+    <p style="text-align: center;">Learn how to say "Yes," "No," "Good," and "Bad"!</p>
+
+    <h2>The "Is" vs "Is Not" </h2>
+    <div class="grammar-grid">
+        <div class="logic-card positive">
+            <span class="label">To Be / Yes</span>
+            <span class="big-char">係</span>
+            <b>Haih</b>
+            <p>Use this to say what something <b>IS</b>.</p>
+            <button class="listen-btn" onclick="speak('係')">Listen 🔊</button>
+        </div>
+        <div class="logic-card negative">
+            <span class="label">Not To Be / No</span>
+            <span class="big-char">唔係</span>
+            <b>Mh haih</b>
+            <p>Use this to say what something <b>IS NOT</b>.</p>
+            <button class="listen-btn" onclick="speak('唔係')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <h2>The "Good" vs "Not Good"</h2>
+    <div class="grammar-grid">
+        <div class="logic-card positive">
+            <span class="label">Good / Well</span>
+            <span class="big-char">好</span>
+            <b>Hou</b>
+            <p>Use this for "Good" or "Very."</p>
+            <button class="listen-btn" onclick="speak('好')">Listen 🔊</button>
+        </div>
+        <div class="logic-card negative">
+            <span class="label">Not Good / Bad</span>
+            <span class="big-char">唔好</span>
+            <b>Mh hou</b>
+            <p>Use this for "Not Good" or "Don't."</p>
+            <button class="listen-btn" onclick="speak('唔好')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h3>🚀 Sentence Builder Challenge:</h3>
+        <p>Combine these with your food words!</p>
+        <ul style="list-style: none; padding: 0;">
+            <li>✅ <b>好食 (Hou sek)</b> = Good to eat (Delicious!)</li>
+            <li>❌ <b>唔好食 (Mh hou sek)</b> = Not good to eat (Yucky!)</li>
+            <li>✅ <b>係魚 (Haih yú)</b> = It is a fish.</li>
+            <li>❌ <b>唔係魚 (Mh haih yú)</b> = It is not a fish.</li>
+        </ul>
+    </div>
+
+
+<h2>The "Have" vs "Not Have" (Existence)</h2>
+    <div class="grammar-grid">
+        <div class="logic-card positive">
+            <span class="label">To Have / There is</span>
+            <span class="big-char">有</span>
+            <b>Yáuh</b>
+            <p>Use this for things you <b>OWN</b> or that <b>EXIST</b>.</p>
+            <button class="listen-btn" onclick="speak('有')">Listen 🔊</button>
+        </div>
+        <div class="logic-card negative">
+            <span class="label">To Not Have / There is not</span>
+            <span class="big-char">無</span>
+            <b>Mòuh</b>
+            <p>Use this when something is <b>MISSING</b>.</p>
+            <button class="listen-btn" onclick="speak('無')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h3>💡 Pro Tip: Existence Questions</h3>
+        <p>Just like "好唔好", you can combine these to ask "Do you have?":</p>
+        <p><b>「有無...?」 (Yáuh mòuh...?)</b> = "Have or not have...?"</p>
+        
+        <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+        
+        <ul style="list-style: none; padding: 0;">
+            <li>✅ <b>我有魚 (Ngóh yáuh yú)</b> = I have fish.</li>
+            <li>❌ <b>我無錢 (Ngóh mòuh chín)</b> = I have no money.</li>
+            <li>❓ <b>有無叉燒包? (Yáuh mòuh chaā sīu baāu?)</b> = Do you have BBQ pork buns?</li>
+        </ul>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Life Academy</title>
+    <style>
+        :root { --action: #34495e; --go: #f39c12; --home: #d35400; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #fdfaf0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px var(--action); }
+        
+        h1 { text-align: center; color: black; font-size: 2.5rem; }
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; background: var(--action); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card { background: white; border: 2px solid #ddd; padding: 15px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .card:hover { border-color: var(--go); transform: translateY(-5px); }
+        
+        .char { font-size: 2.5rem; display: block; margin-bottom: 5px; font-weight: bold; }
+        .pinyin { color: #e67e22; font-weight: bold; }
+        .eng { color: #7f8c8d; font-size: 0.9rem; }
+
+        .listen-btn { cursor: pointer; border-radius: 50px; border: none; padding: 8px 15px; background: #f1f2f6; margin-top: 10px; }
+        
+        .pro-tip { background: #e8f8f5; border-left: 5px solid #1abc9c; padding: 15px; border-radius: 10px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏃 日常生活 Daily Life</h1>
+    <p style="text-align: center;">Master the words for things you do every single day!</p>
+
+    <h2>🏢 Work & Home</h2>
+    <div class="grid">
+        <div class="card">
+            <span class="char">返工</span>
+            <span class="pinyin">Fāan Gūng</span>
+            <div class="eng">Go to Work</div>
+            <button class="listen-btn" onclick="speak('返工')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">放工</span>
+            <span class="pinyin">Fong Gūng</span>
+            <div class="eng">Finish Work</div>
+            <button class="listen-btn" onclick="speak('放工')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">返屋企</span>
+            <span class="pinyin">Fāan Uk Kéi</span>
+            <div class="eng">Go Home</div>
+            <button class="listen-btn" onclick="speak('返屋企')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">去...</span>
+            <span class="pinyin">Heui...</span>
+            <div class="eng">Go to (Place)</div>
+            <button class="listen-btn" onclick="speak('去')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <h2>🍕 Eating & Sleeping</h2>
+    <div class="grid">
+        <div class="card">
+            <span class="char">食飯</span>
+            <span class="pinyin">Sihk Faan</span>
+            <div class="eng">Eat (a meal)</div>
+            <button class="listen-btn" onclick="speak('食飯')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">飲水</span>
+            <span class="pinyin">Yám Seui</span>
+            <div class="eng">Drink Water</div>
+            <button class="listen-btn" onclick="speak('飲水')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">瞓覺</span>
+            <span class="pinyin">Fan Gaau</span>
+            <div class="eng">Sleep</div>
+            <button class="listen-btn" onclick="speak('瞓覺')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">起身</span>
+            <span class="pinyin">Héi Sān</span>
+            <div class="eng">Wake up / Get up</div>
+            <button class="listen-btn" onclick="speak('起身')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <div class="pro-tip">
+        <h3>💡 Pro Tip: The "Faan" (返) Rule</h3>
+        <p>In Cantonese, we don't just "go" to work or home. We use the word <b>返 (Fāan)</b>, which means "to return." Whether it's your office or your house, you are "returning" to where you belong!</p>
+        <p><b>Example:</b> <i>Ngóh fāan uk kéi</i> = I am going (returning) home.</p>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Navigator</title>
+    <style>
+        :root { --map: #3498db; --arrow: #f39c12; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #f4f7f6; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px var(--map); }
+        
+        h1 { text-align: center; color: black; font-size: 2.5rem; }
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; background: var(--map); }
+        
+        .compass-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: center; margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .dir-card { background: white; border: 2px solid #ddd; padding: 15px; border-radius: 15px; transition: 0.3s; }
+        .dir-card:hover { border-color: var(--arrow); background: #fffcf0; }
+        
+        .emoji { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+        .char { font-size: 2.5rem; display: block; font-weight: bold; color: var(--dark); }
+        .pinyin { color: #d35400; font-weight: bold; font-size: 1rem; }
+        .eng { color: #7f8c8d; font-size: 0.8rem; }
+        
+        .location-box { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .loc-item { background: #ebf5fb; padding: 15px 25px; border-radius: 50px; border: 2px solid var(--map); font-weight: bold; text-align: center; min-width: 120px; }
+
+        .listen-btn { cursor: pointer; border-radius: 50px; border: none; padding: 5px 10px; background: #eee; font-size: 0.8rem; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧭 Navigation Hub (導航站)</h1>
+    
+    <h2>📍 Where are we?</h2>
+    <div class="location-box">
+        <div class="loc-item">
+            <span class="emoji">🎯</span>
+            <span style="font-size: 1.5rem;">呢度</span><br>
+            <span class="pinyin">Nī Douh</span><br>
+            <span class="eng">HERE</span><br>
+            <button class="listen-btn" onclick="speak('呢度')">Listen 🔊</button>
+        </div>
+        <div class="loc-item">
+            <span class="emoji">👉</span>
+            <span style="font-size: 1.5rem;">嗰度</span><br>
+            <span class="pinyin">Gó Douh</span><br>
+            <span class="eng">THERE</span><br>
+            <button class="listen-btn" onclick="speak('嗰度')">Listen 🔊</button>
+        </div>
+        <div class="loc-item">
+            <span class="emoji">❓</span>
+            <span style="font-size: 1.5rem;">邊度?</span><br>
+            <span class="pinyin">Bīn Douh?</span><br>
+            <span class="eng">WHERE?</span><br>
+            <button class="listen-btn" onclick="speak('邊度')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <h2>🗺️ The 8 Directions</h2>
+    <div class="compass-grid">
+        <div></div>
+        <div class="dir-card">
+            <span class="emoji">⬆️</span>
+            <span class="char">上</span><span class="pinyin">Seuhng</span><span class="eng">Up</span>
+            <button class="listen-btn" onclick="speak('上')">🔊</button>
+        </div>
+        <div></div>
+
+        <div class="dir-card">
+            <span class="emoji">⬅️</span>
+            <span class="char">左</span><span class="pinyin">Zó</span><span class="eng">Left</span>
+            <button class="listen-btn" onclick="speak('左')">🔊</button>
+        </div>
+        <div class="dir-card" style="background: #eee; border:none; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 2rem;">📍</span>
+        </div>
+        <div class="dir-card">
+            <span class="emoji">➡️</span>
+            <span class="char">右</span><span class="pinyin">Yauh</span><span class="eng">Right</span>
+            <button class="listen-btn" onclick="speak('右')">🔊</button>
+        </div>
+
+        <div></div>
+        <div class="dir-card">
+            <span class="emoji">⬇️</span>
+            <span class="char">下</span><span class="pinyin">Hah</span><span class="eng">Down</span>
+            <button class="listen-btn" onclick="speak('下')">🔊</button>
+        </div>
+        <div></div>
+    </div>
+
+    <h2>🚪 In & Out</h2>
+    <div class="location-box">
+        <div class="dir-card" style="min-width: 100px;">
+            <span class="emoji">⏫</span>
+            <span class="char">前</span><span class="pinyin">Chìhn</span><span class="eng">Front</span>
+            <button class="listen-btn" onclick="speak('前')">🔊</button>
+        </div>
+        <div class="dir-card" style="min-width: 100px;">
+            <span class="emoji">⏬</span>
+            <span class="char">後</span><span class="pinyin">Hauh</span><span class="eng">Back</span>
+            <button class="listen-btn" onclick="speak('後')">🔊</button>
+        </div>
+        <div class="dir-card" style="min-width: 100px;">
+            <span class="emoji">🚶‍♂️➡️</span>
+            <span class="char">出</span><span class="pinyin">Chēut</span><span class="eng">Exit</span>
+            <button class="listen-btn" onclick="speak('出')">🔊</button>
+        </div>
+        <div class="dir-card" style="min-width: 100px;">
+            <span class="emoji">➡️🚶‍♂️</span>
+            <span class="char">入</span><span class="pinyin">Yahp</span><span class="eng">Enter</span>
+            <button class="listen-btn" onclick="speak('入')">🔊</button>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Pictograph Gallery</title>
+    <style>
+        :root { --ink: #2f3542; --paper: #f9f9f9; --accent: #ff4757; }
+        body { font-family: 'Microsoft JhengHei', sans-serif; background: #f1f2f6; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; border: 3px solid var(--ink); box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
+        
+        h1 { text-align: center; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+        
+        .pictograph-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin-top: 25px; }
+        .pic-card { 
+            background: var(--paper); 
+            border: 2px solid var(--ink); 
+            border-radius: 15px; 
+            padding: 20px; 
+            text-align: center; 
+            transition: 0.3s;
+        }
+        .pic-card:hover { transform: scale(1.05); background: white; border-color: var(--accent); }
+        
+        .char-hero { font-size: 4rem; display: block; color: var(--ink); margin-bottom: 10px; }
+        .jyutping { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+        .meaning { color: #747d8c; font-size: 0.9rem; margin-bottom: 10px; }
+        .visual-hint { font-size: 0.8rem; font-style: italic; color: #2ed573; background: #e8fcf0; padding: 5px; border-radius: 5px; }
+
+        .btn-speak { cursor: pointer; background: var(--ink); color: white; border: none; padding: 5px 15px; border-radius: 20px; margin-top: 15px; font-size: 0.8rem; }
+        .btn-speak:hover { background: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎨 Essential Pictographs (象形文字)</h1>
+    <p style="text-align: center;">These characters are drawings of real-life objects!</p>
+
+    <div class="pictograph-grid">
+        <div class="pic-card">
+            <span class="char-hero">口</span>
+            <span class="jyutping">Hau</span>
+            <div class="meaning">Mouth / Opening</div>
+            <div class="visual-hint">👄 An open mouth</div>
+            <button class="btn-speak" onclick="speak('口')">Listen 🔊</button>
+        </div>
+
+        <div class="pic-card">
+            <span class="char-hero">手</span>
+            <span class="jyutping">Sau</span>
+            <div class="meaning">Hand</div>
+            <div class="visual-hint">🖐️ Fingers and a palm</div>
+            <button class="btn-speak" onclick="speak('手')">Listen 🔊</button>
+        </div>
+
+        <div class="pic-card">
+            <span class="char-hero">田</span>
+            <span class="jyutping">Tihn</span>
+            <div class="meaning">Field / Farm</div>
+            <div class="visual-hint">🌾 A grid of rice paddies</div>
+            <button class="btn-speak" onclick="speak('田')">Listen 🔊</button>
+        </div>
+
+        <div class="pic-card">
+            <span class="char-hero">山</span>
+            <span class="jyutping">Saan</span>
+            <div class="meaning">Mountain</div>
+            <div class="visual-hint">⛰️ Three mountain peaks</div>
+            <button class="btn-speak" onclick="speak('山')">Listen 🔊</button>
+        </div>
+
+        <div class="pic-card">
+            <span class="char-hero">中</span>
+            <span class="jyutping">Zung</span>
+            <div class="meaning">Middle / Center</div>
+            <div class="visual-hint">🎯 A line through the center</div>
+            <button class="btn-speak" onclick="speak('中')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Hiking Guide</title>
+    <style>
+        :root { --trail: #27ae60; --danger: #c0392b; --warning: #f1c40f; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #f0f4f0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px var(--trail); }
+        
+        h1 { text-align: center; color: black; font-size: 2.5rem; }
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; background: var(--trail); }
+        .danger-h { background: var(--danger); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card { background: white; border: 2px solid #ddd; padding: 15px; border-radius: 20px; text-align: center; position: relative; }
+        .danger-card { border: 2px solid var(--danger); background: #fff5f5; }
+        
+        .char { font-size: 2.2rem; display: block; margin-bottom: 5px; font-weight: bold; color: var(--dark); }
+        .pinyin { color: #d35400; font-weight: bold; font-size: 1rem; }
+        .eng { color: #7f8c8d; font-size: 0.9rem; }
+
+        .listen-btn { cursor: pointer; border-radius: 50px; border: none; padding: 8px 15px; background: #f1f2f6; margin-top: 10px; }
+        .listen-btn:hover { background: #dfe4ea; }
+        
+        .sign-icon { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🥾 行山 Hiking Trailblazer</h1>
+    <p style="text-align: center;">Essential phrases for the Hong Kong hills.</p>
+
+    <h2>⛰️ Movement & Terrain</h2>
+    <div class="grid">
+        <div class="card">
+            <span class="char">上山</span>
+            <span class="pinyin">Seuhng Sāan</span>
+            <div class="eng">Go Up Hill</div>
+            <button class="listen-btn" onclick="speak('上山')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">下山</span>
+            <span class="pinyin">Hah Sāan</span>
+            <div class="eng">Go Down Hill</div>
+            <button class="listen-btn" onclick="speak('下山')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">行慢啲</span>
+            <span class="pinyin">Hàhng Maahn Dī</span>
+            <div class="eng">Walk Slowly</div>
+            <button class="listen-btn" onclick="speak('行慢啲')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">小心</span>
+            <span class="pinyin">Síu Sām</span>
+            <div class="eng">Careful!</div>
+            <button class="listen-btn" onclick="speak('小心')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">樓梯</span>
+            <span class="pinyin">Làu Tāi</span>
+            <div class="eng">Stairs</div>
+            <button class="listen-btn" onclick="speak('樓梯')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="char">斜路</span>
+            <span class="pinyin">Ché Louh</span>
+            <div class="eng">Slope</div>
+            <button class="listen-btn" onclick="speak('斜路')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <h2 class="danger-h">⚠️ Warnings (警告)</h2>
+    
+    <div class="grid">
+        <div class="card danger-card">
+            <span class="sign-icon">🔥</span>
+            <span class="char">山火</span>
+            <span class="pinyin">Sāan Fó</span>
+            <div class="eng">Mountain Fire</div>
+            <button class="listen-btn" onclick="speak('山火')">Listen 🔊</button>
+        </div>
+        <div class="card danger-card">
+            <span class="sign-icon">⚡</span>
+            <span class="char">電纜</span>
+            <span class="pinyin">Dihn Lám</span>
+            <div class="eng">Electric Cables</div>
+            <button class="listen-btn" onclick="speak('電纜')">Listen 🔊</button>
+        </div>
+        <div class="card danger-card">
+            <span class="sign-icon">🚫</span>
+            <span class="char">危險</span>
+            <span class="pinyin">Ngàih Hím</span>
+            <div class="eng">Danger</div>
+            <button class="listen-btn" onclick="speak('危險')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Weather & Hiking Guide</title>
+    <style>
+        :root { --sky: #0984e3; --sun: #f1c40f; --storm: #2d3436; --dark: #2c3e50; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #f0f7ff; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px var(--sky); }
+        
+        h1 { text-align: center; color: black; font-size: 2.5rem; }
+        h2 { padding: 12px; border-radius: 15px; color: white; margin-top: 35px; background: var(--sky); }
+        .storm-h { background: var(--storm); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card { background: white; border: 2px solid #ddd; padding: 15px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--sky); }
+        
+        .char { font-size: 2.5rem; display: block; margin-bottom: 5px; font-weight: bold; color: var(--dark); }
+        .pinyin { color: #d35400; font-weight: bold; font-size: 1rem; }
+        .eng { color: #7f8c8d; font-size: 0.9rem; }
+
+        .listen-btn { cursor: pointer; border-radius: 50px; border: none; padding: 8px 15px; background: #f1f2f6; margin-top: 10px; }
+        .icon { font-size: 2rem; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌦️ 天氣 Weather Station</h1>
+    <p style="text-align: center;">Check the sky before you go up the mountain!</p>
+
+    <h2>☀️ Daily Weather</h2>
+    <div class="grid">
+        <div class="card">
+            <span class="icon">☀️</span>
+            <span class="char">好天</span>
+            <span class="pinyin">Hóu Tīn</span>
+            <div class="eng">Fine Weather</div>
+            <button class="listen-btn" onclick="speak('好天')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="icon">🥵</span>
+            <span class="char">好熱</span>
+            <span class="pinyin">Hóu Yiht</span>
+            <div class="eng">Very Hot</div>
+            <button class="listen-btn" onclick="speak('好熱')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="icon">🌧️</span>
+            <span class="char">落雨</span>
+            <span class="pinyin">Lohk Yúh</span>
+            <div class="eng">Raining</div>
+            <button class="listen-btn" onclick="speak('落雨')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="icon">🌬️</span>
+            <span class="char">好大風</span>
+            <span class="pinyin">Hóu Daaih Fūng</span>
+            <div class="eng">Very Windy</div>
+            <button class="listen-btn" onclick="speak('好大風')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <h2 class="storm-h">⛈️ Warning Signals</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <span class="icon">🌀</span>
+            <span class="char">打風</span>
+            <span class="pinyin">Dá Fūng</span>
+            <div class="eng">Typhoon</div>
+            <button class="listen-btn" onclick="speak('打風')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="icon">⚡</span>
+            <span class="char">雷暴</span>
+            <span class="pinyin">Lèuih Bouh</span>
+            <div class="eng">Thunderstorm</div>
+            <button class="listen-btn" onclick="speak('雷暴')">Listen 🔊</button>
+        </div>
+        <div class="card">
+            <span class="icon">🌫️</span>
+            <span class="char">有霧</span>
+            <span class="pinyin">Yáuh Mouh</span>
+            <div class="eng">Foggy</div>
+            <button class="listen-btn" onclick="speak('有霧')">Listen 🔊</button>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese Master Quiz with Score</title>
+    <style>
+        :root { 
+            --dark: #2c3e50; --quiz-bg: #f8f9fa; --accent: #6c5ce7;
+            --success: #2ecc71; --danger: #e74c3c;
+        }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background: #eef2f3; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; border: 4px solid var(--dark); box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
+        
+        /* Scoreboard Styling */
+        .scoreboard { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+        .score-box { background: var(--dark); color: white; padding: 10px 20px; border-radius: 15px; text-align: center; min-width: 100px; }
+        .score-num { display: block; font-size: 1.5rem; font-weight: bold; color: #f1c40f; }
+
+        .quiz-container { background: var(--quiz-bg); border: 3px dashed var(--accent); border-radius: 20px; padding: 40px; text-align: center; position: relative; }
+        #quiz-emoji { font-size: 5rem; display: block; margin-bottom: 10px; }
+        #quiz-eng { font-size: 1.5rem; color: #7f8c8d; margin-bottom: 20px; }
+        
+        #quiz-result { font-size: 2.5rem; font-weight: bold; color: var(--accent); margin-bottom: 20px; min-height: 3rem; }
+        
+        .quiz-btn { cursor: pointer; border-radius: 50px; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; transition: 0.2s; margin: 5px; }
+        .btn-next { background: var(--accent); color: white; }
+        .btn-reveal { background: #3498db; color: white; }
+        .btn-correct { background: var(--success); color: white; display: none; }
+        .btn-wrong { background: var(--danger); color: white; display: none; }
+        
+        .quiz-btn:hover { opacity: 0.9; transform: scale(1.05); }
+        .quiz-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 style="text-align: center; color: var(--accent);">🎮 廣東話挑戰 Quiz Mode</h2>
+
+    <div class="scoreboard">
+        <div class="score-box">
+            <span>Current Streak</span>
+            <span id="current-streak" class="score-num">0</span>
+        </div>
+        <div class="score-box">
+            <span>Best Streak</span>
+            <span id="best-streak" class="score-num">0</span>
+        </div>
+    </div>
+
+    <div class="quiz-container">
+        <span id="quiz-emoji">🚀</span>
+        <div id="quiz-eng">Ready to test your skills?</div>
+        <div id="quiz-result">Click Start!</div>
+        
+        <div id="action-area">
+            <button id="start-btn" class="quiz-btn btn-next" onclick="startQuiz()">Next Question ⏭️</button>
+            <button id="reveal-btn" class="quiz-btn btn-reveal" style="display:none;" onclick="revealAnswer()">Reveal Answer 👁️</button>
+        </div>
+
+        <div id="grading-area" style="margin-top: 20px;">
+            <p id="grading-text" style="display:none; color: #7f8c8d;">Did you get it right?</p>
+            <button id="correct-btn" class="quiz-btn btn-correct" onclick="handleScore(true)">Yes, I got it! ✅</button>
+            <button id="wrong-btn" class="quiz-btn btn-wrong" onclick="handleScore(false)">No, try again ❌</button>
+        </div>
+    </div>
+
+    <script>
+        const vocabulary = [
+            {char: "牛肉", eng: "Beef", emoji: "🥩"},
+            {char: "豬肉", eng: "Pork", emoji: "🐖"},
+            {char: "雞肉", eng: "Chicken", emoji: "🍗"},
+            {char: "魚", eng: "Fish", emoji: "🐟"},
+            {char: "蝦", eng: "Shrimp", emoji: "🦐"},
+            {char: "蘋果", eng: "Apple", emoji: "🍎"},
+            {char: "香蕉", eng: "Banana", emoji: "🍌"},
+            {char: "菠蘿包", eng: "Pineapple Bun", emoji: "🥯"},
+            {char: "雞尾包", eng: "Cocktail Bun", emoji: "🥐"},
+            {char: "雪糕", eng: "Ice Cream", emoji: "🍦"},
+            {char: "返工", eng: "Go to Work", emoji: "🏢"},
+            {char: "返屋企", eng: "Go Home", emoji: "🏠"},
+            {char: "山火", eng: "Mountain Fire", emoji: "🔥"},
+            {char: "小心", eng: "Careful", emoji: "⚠️"},
+            {char: "落雨", eng: "Raining", emoji: "🌧️"},
+            {char: "開心果", eng: "Pistachio", emoji: "🟢"}
+        ];
+
+        let currentItem = null;
+        let streak = 0;
+        let bestStreak = 0;
+
+        function startQuiz() {
+            currentItem = vocabulary[Math.floor(Math.random() * vocabulary.length)];
+            document.getElementById('quiz-emoji').innerText = currentItem.emoji;
+            document.getElementById('quiz-eng').innerText = "How do you say '" + currentItem.eng + "'?";
+            document.getElementById('quiz-result').innerText = "???";
+            
+            document.getElementById('start-btn').style.display = "none";
+            document.getElementById('reveal-btn').style.display = "inline-block";
+            document.getElementById('grading-text').style.display = "none";
+            document.getElementById('correct-btn').style.display = "none";
+            document.getElementById('wrong-btn').style.display = "none";
+        }
+
+        function revealAnswer() {
+            document.getElementById('quiz-result').innerText = currentItem.char;
+            document.getElementById('reveal-btn').style.display = "none";
+            
+            // Show grading buttons
+            document.getElementById('grading-text').style.display = "block";
+            document.getElementById('correct-btn').style.display = "inline-block";
+            document.getElementById('wrong-btn').style.display = "inline-block";
+            
+            // Speak the answer
+            const utterance = new SpeechSynthesisUtterance(currentItem.char);
+            utterance.lang = 'zh-HK';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function handleScore(isCorrect) {
+            if (isCorrect) {
+                streak++;
+                if (streak > bestStreak) bestStreak = streak;
+            } else {
+                streak = 0;
+            }
+            
+            document.getElementById('current-streak').innerText = streak;
+            document.getElementById('best-streak').innerText = bestStreak;
+            
+            // Prepare for next round
+            document.getElementById('start-btn').style.display = "inline-block";
+            document.getElementById('correct-btn').style.display = "none";
+            document.getElementById('wrong-btn').style.display = "none";
+            document.getElementById('grading-text').style.display = "none";
+            document.getElementById('quiz-result').innerText = isCorrect ? "Excellent! 🎉" : "Keep practicing! 💪";
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+
+
