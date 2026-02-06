@@ -280,40 +280,40 @@
     <h1>🇭🇰 廣東話 Cantonese Academy</h1>
 
     <h2>✨ 10 Essential Characters</h2>
-    <p>These are the building blocks of the language!</p>
+    <p>These are the building blocks of the language! (Click a card to hear it)</p>
     <div class="grid">
-        <div class="element-card"><span class="character">一</span><br><b>Yat</b> (One)</div>
-        <div class="element-card"><span class="character">人</span><br><b>Yahn</b> (Person)</div>
-        <div class="element-card"><span class="character">大</span><br><b>Daai</b> (Big)</div>
-        <div class="element-card"><span class="character">小</span><br><b>Siu</b> (Small)</div>
-        <div class="element-card"><span class="character">日</span><br><b>Yaht</b> (Sun/Day)</div>
-        <div class="element-card"><span class="character">月</span><br><b>Yuht</b> (Moon/Month)</div>
-        <div class="element-card"><span class="character">山</span><br><b>Saan</b> (Mountain)</div>
-        <div class="element-card"><span class="character">水</span><br><b>Seui</b> (Water)</div>
-        <div class="element-card"><span class="character">口</span><br><b>Hau</b> (Mouth)</div>
-        <div class="element-card"><span class="character">心</span><br><b>Sam</b> (Heart)</div>
+        <div class="element-card" onclick="speak('一')"><span class="character">一</span><br><b>Yat</b> (One)</div>
+        <div class="element-card" onclick="speak('人')"><span class="character">人</span><br><b>Yahn</b> (Person)</div>
+        <div class="element-card" onclick="speak('大')"><span class="character">大</span><br><b>Daai</b> (Big)</div>
+        <div class="element-card" onclick="speak('小')"><span class="character">小</span><br><b>Siu</b> (Small)</div>
+        <div class="element-card" onclick="speak('日')"><span class="character">日</span><br><b>Yaht</b> (Sun/Day)</div>
+        <div class="element-card" onclick="speak('月')"><span class="character">月</span><br><b>Yuht</b> (Moon/Month)</div>
+        <div class="element-card" onclick="speak('山')"><span class="character">山</span><br><b>Saan</b> (Mountain)</div>
+        <div class="element-card" onclick="speak('水')"><span class="character">水</span><br><b>Seui</b> (Water)</div>
+        <div class="element-card" onclick="speak('口')"><span class="character">口</span><br><b>Hau</b> (Mouth)</div>
+        <div class="element-card" onclick="speak('心')"><span class="character">心</span><br><b>Sam</b> (Heart)</div>
     </div>
 
     <h2>🔥 The Five Elements (五行)</h2>
     <p>In ancient culture, everything in the world is made of these five things!</p>
     <div class="grid">
-        <div class="element-card gold">
+        <div class="element-card gold" onclick="speak('金')">
             <span class="emoji">⚔️</span><span class="character">金</span><br><b>Gam</b> (Gold/Metal)<br>
             <span class="radical-tag">Radical: 釒</span>
         </div>
-        <div class="element-card wood">
+        <div class="element-card wood" onclick="speak('木')">
             <span class="emoji">🌳</span><span class="character">木</span><br><b>Muhk</b> (Wood)<br>
             <span class="radical-tag">Radical: 木</span>
         </div>
-        <div class="element-card water">
+        <div class="element-card water" onclick="speak('水')">
             <span class="emoji">🌊</span><span class="character">水</span><br><b>Seui</b> (Water)<br>
             <span class="radical-tag">Radical: 氵</span>
         </div>
-        <div class="element-card fire">
+        <div class="element-card fire" onclick="speak('火')">
             <span class="emoji">🔥</span><span class="character">火</span><br><b>Fó</b> (Fire)<br>
             <span class="radical-tag">Radical: 灬 / 火</span>
         </div>
-        <div class="element-card earth">
+        <div class="element-card earth" onclick="speak('土')">
             <span class="emoji">⛰️</span><span class="character">土</span><br><b>Tou</b> (Earth/Dirt)<br>
             <span class="radical-tag">Radical: 土</span>
         </div>
@@ -321,12 +321,41 @@
 
     <div class="interactive-box">
         <h3>💡 Radical Detective</h3>
-        <p>Radicals are like hints. For example, the <b>Water</b> radical <span class="character" style="font-size: 1.2rem;">氵</span> usually appears in words about liquid!</p>
-        <button onclick="alert('The Water radical 氵 is in the word for Ocean (海)!')">Ocean Hint</button>
-        <button onclick="alert('The Fire radical 灬 is in the word for Boiling (煮)!')">Cooking Hint</button>
+        <p>Radicals are like hints. For example, the <b>Water</b> radical <span class="character" style="font-size: 1.2rem; cursor: pointer;" onclick="speak('水')">氵</span> usually appears in words about liquid!</p>
+        <button onclick="speak('海')">Ocean Hint (海)</button>
+        <button onclick="speak('煮')">Cooking Hint (煮)</button>
     </div>
 
-    </div>
+</div>
+
+<style>
+    /* Added CSS to make cards feel interactive */
+    .element-card {
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .element-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .element-card:active {
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function speak(text) {
+        // Cancel any current speech so it doesn't overlap if you click fast
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-HK'; // Sets language to Cantonese (Hong Kong)
+        utterance.rate = 0.9;    // Speed of speech (0.1 to 10)
+        utterance.pitch = 1.0;   // Tone pitch (0 to 2)
+        
+        window.speechSynthesis.speak(utterance);
+    }
+</script>
 
 </body>
 
@@ -601,7 +630,7 @@
         .veg-h { background: var(--veg); }
         .fruit-h { background: var(--fruit); }
         .dessert-h { background: var(--dessert); }
-		.staple-h { background: var(--staple);
+		.staple-h { background: var(--staple);}
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 15px; }
         .card { 
@@ -1622,6 +1651,7 @@
 
 </body>
 </html>
+
 
 
 
