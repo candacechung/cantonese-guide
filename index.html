@@ -22,7 +22,16 @@
         h1 { text-align: center; color: #ff4757; font-size: 2.5rem; text-shadow: 2px 2px #ffcccc; }
         h2 { color: #2f3542; background: #dfe4ea; padding: 10px; border-radius: 10px; border-left: 10px solid #ff4757; }
         
-        .character { font-size: 1.4rem; color: #ff4757; font-weight: bold; }
+        /* Added cursor and hover effect to show items are clickable */
+        .character { 
+            font-size: 1.4rem; 
+            color: #ff4757; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .character:hover { transform: scale(1.2); color: #ffa502; }
         
         .interactive-box {
             background: #f1f2f6;
@@ -47,7 +56,15 @@
         button:active { transform: translateY(2px); box-shadow: 0 2px #e67e22; }
         
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .food-item { background: #f7f1e3; padding: 15px; border-radius: 15px; border: 1px solid #d1ccc0; line-height: 1.4; }
+        .food-item { 
+            background: #f7f1e3; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 1px solid #d1ccc0; 
+            line-height: 1.4; 
+            cursor: pointer;
+        }
+        .food-item:hover { background: #fffbe6; }
         
         #quiz-result { margin-top: 15px; font-weight: bold; font-size: 1.2rem; }
     </style>
@@ -59,31 +76,33 @@
     
     <div class="interactive-box">
         <h3>🎯 Word of the Moment</h3>
-        <p>Click to see the character and the sound!</p>
+        <p>Click the character to hear it!</p>
         <button onclick="getPhrase()">Random Word!</button>
-        <div id="display-area" style="font-size: 1.8rem; margin-top:15px;">你好 (Neih hou)</div>
+        <div id="display-area" style="font-size: 1.8rem; margin-top:15px;">
+            <span class="character" onclick="speak('你好')">你好</span> (Neih hou) <br><small>Hello</small>
+        </div>
     </div>
 
-    <h2>🔢 Counting Numbers</h2>
+    <h2>🔢 Counting Numbers (Click to hear)</h2>
     <div class="grid">
-        <div>1: <span class="character">一</span> (Yat)</div>
-        <div>2: <span class="character">二</span> (Yih)</div>
-        <div>3: <span class="character">三</span> (Saam)</div>
-        <div>4: <span class="character">四</span> (Sei)</div>
-        <div>5: <span class="character">五</span> (Ng)</div>
-        <div>6: <span class="character">六</span> (Luk)</div>
-        <div>7: <span class="character">七</span> (Chat)</div>
-        <div>8: <span class="character">八</span> (Baat)</div>
-        <div>9: <span class="character">九</span> (Gau)</div>
-        <div>10: <span class="character">十</span> (Sap)</div>
+        <div onclick="speak('一')">1: <span class="character">一</span> (Yat)</div>
+        <div onclick="speak('二')">2: <span class="character">二</span> (Yih)</div>
+        <div onclick="speak('三')">3: <span class="character">三</span> (Saam)</div>
+        <div onclick="speak('四')">4: <span class="character">四</span> (Sei)</div>
+        <div onclick="speak('五')">5: <span class="character">五</span> (Ng)</div>
+        <div onclick="speak('六')">6: <span class="character">六</span> (Luk)</div>
+        <div onclick="speak('七')">7: <span class="character">七</span> (Chat)</div>
+        <div onclick="speak('八')">8: <span class="character">八</span> (Baat)</div>
+        <div onclick="speak('九')">9: <span class="character">九</span> (Gau)</div>
+        <div onclick="speak('十')">10: <span class="character">十</span> (Sap)</div>
     </div>
 
     <h2>🥟 Dim Sum Menu (點心)</h2>
     <div class="grid">
-        <div class="food-item"><span class="character">蝦餃</span><br><b>Haa Gau</b> (Shrimp Dumpling)</div>
-        <div class="food-item"><span class="character">燒賣</span><br><b>Siu Maai</b> (Pork Dumpling)</div>
-        <div class="food-item"><span class="character">叉燒包</span><br><b>Chaa Siu Baau</b> (BBQ Pork Bun)</div>
-        <div class="food-item"><span class="character">蛋撻</span><br><b>Daan Taat</b> (Egg Tart)</div>
+        <div class="food-item" onclick="speak('蝦餃')"><span class="character">蝦餃</span><br><b>Haa Gau</b> (Shrimp Dumpling)</div>
+        <div class="food-item" onclick="speak('燒賣')"><span class="character">燒賣</span><br><b>Siu Maai</b> (Pork Dumpling)</div>
+        <div class="food-item" onclick="speak('叉燒包')"><span class="character">叉燒包</span><br><b>Chaa Siu Baau</b> (BBQ Pork Bun)</div>
+        <div class="food-item" onclick="speak('蛋撻')"><span class="character">蛋撻</span><br><b>Daan Taat</b> (Egg Tart)</div>
     </div>
 
     <div class="interactive-box" style="background-color: #ced6e0;">
@@ -96,6 +115,18 @@
     </div>
 
     <script>
+        // Core Speech Function
+        function speak(text) {
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-HK'; // Sets language to Cantonese
+            utterance.rate = 0.8;    // Slightly slower for better learning
+            utterance.pitch = 1;
+            window.speechSynthesis.speak(utterance);
+        }
+
         const words = [
             {c: "你好", s: "Neih hou", e: "Hello"},
             {c: "唔該", s: "M-goi", e: "Thank you"},
@@ -107,23 +138,24 @@
         function getPhrase() {
             const item = words[Math.floor(Math.random() * words.length)];
             document.getElementById('display-area').innerHTML = 
-                `<span class="character">${item.c}</span> (${item.s}) <br><small>${item.e}</small>`;
+                `<span class="character" onclick="speak('${item.c}')">${item.c}</span> (${item.s}) <br><small>${item.e}</small>`;
         }
 
         function checkQuiz(answer) {
             const result = document.getElementById('quiz-result');
-            if(answer === 'Hou-sek') {
+            if(answer === 'Hou-lek') {
                 result.innerText = "✅ Correct! You're a natural!";
                 result.style.color = "green";
+                speak('好女'); // Reward user with the correct sound
             } else {
-                result.innerText = "❌ Try again! Hint: It starts with 'Hou'";
+                result.innerText = "❌ Try again!";
                 result.style.color = "red";
             }
         }
     </script>
 </div>
-
 </body>
+</html>
 
 <html lang="zh-Hant">
 <head>
@@ -1486,6 +1518,7 @@
 
 </body>
 </html>
+
 
 
 
