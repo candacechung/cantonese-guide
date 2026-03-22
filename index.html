@@ -412,34 +412,69 @@
     </div>
 
     <script>
-        // Simple Drawing Logic
-        const canvas = document.getElementById('paintCanvas');
-        const ctx = canvas.getContext('2d');
-        let painting = false;
+    const canvas = document.getElementById('paintCanvas');
+    const ctx = canvas.getContext('2d');
+    let painting = false;
 
-        function startPosition(e) { painting = true; draw(e); }
-        function finishedPosition() { painting = false; ctx.beginPath(); }
-        function draw(e) {
-            if (!painting) return;
-            ctx.lineWidth = 5;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#2f3542';
+    // Helper to get correct coordinates for both Mouse and Touch
+    function getCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        // Check if it's a touch event or mouse event
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+    }
 
-            const rect = canvas.getBoundingClientRect();
-            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-        }
+    function startPosition(e) {
+        painting = true;
+        draw(e);
+    }
 
-        canvas.addEventListener('mousedown', startPosition);
-        canvas.addEventListener('mouseup', finishedPosition);
-        canvas.addEventListener('mousemove', draw);
+    function finishedPosition() {
+        painting = false;
+        ctx.beginPath();
+    }
 
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-    </script>
+    function draw(e) {
+        if (!painting) return;
+        
+        // Prevent scrolling on touch devices
+        if (e.type === 'touchmove') e.preventDefault();
+
+        const coords = getCoords(e);
+
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#2f3542';
+
+        ctx.lineTo(coords.x, coords.y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(coords.x, coords.y);
+    }
+
+    // Mouse Events
+    canvas.addEventListener('mousedown', startPosition);
+    canvas.addEventListener('mouseup', finishedPosition);
+    canvas.addEventListener('mousemove', draw);
+
+    // Touch Events (Mobile)
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevents "tap to zoom" and scrolling
+        startPosition(e);
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', finishedPosition);
+    canvas.addEventListener('touchmove', draw, { passive: false });
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+</script>
 </div>
 
 </body>
