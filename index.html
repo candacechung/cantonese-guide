@@ -95,6 +95,9 @@
         <div onclick="speak('八')">8: <span class="character">八</span> (Baat)</div>
         <div onclick="speak('九')">9: <span class="character">九</span> (Gau)</div>
         <div onclick="speak('十')">10: <span class="character">十</span> (Sap)</div>
+		<div onclick="speak('百')">100: <span class="character">百</span> (Baak)</div>
+		<div onclick="speak('千')">1,000: <span class="character">千</span> (Chin)</div>
+		<div onclick="speak('萬')">10,000: <span class="character">萬</span> (Maan)</div>
     </div>
 
     <h2>🥟 Dim Sum Menu (點心)</h2>
@@ -103,6 +106,7 @@
         <div class="food-item" onclick="speak('燒賣')"><span class="character">燒賣</span><br><b>Siu Maai</b> (Pork Dumpling)</div>
         <div class="food-item" onclick="speak('叉燒包')"><span class="character">叉燒包</span><br><b>Chaa Siu Baau</b> (BBQ Pork Bun)</div>
         <div class="food-item" onclick="speak('蛋撻')"><span class="character">蛋撻</span><br><b>Daan Taat</b> (Egg Tart)</div>
+		<div class="food-item" onclick="speak('奶黃包')"><span class="character">奶黃包</span><br><b>Naai Wong Baau</b> (Custard Bun)</div>
     </div>
 
     <div class="interactive-box" style="background-color: #ced6e0;">
@@ -1196,6 +1200,39 @@
         </div>
         <div></div>
     </div>
+
+	<h2>🧭 Cardinal Directions</h2>
+<div class="compass-grid">
+    <div></div>
+    <div class="dir-card">
+        <span class="emoji">❄️</span>
+        <span class="char">北</span><span class="pinyin">Bak</span><span class="eng">North</span>
+        <button class="listen-btn" onclick="speak('北')">🔊</button>
+    </div>
+    <div></div>
+
+    <div class="dir-card">
+        <span class="emoji">🌅</span>
+        <span class="char">西</span><span class="pinyin">Saai</span><span class="eng">West</span>
+        <button class="listen-btn" onclick="speak('西')">🔊</button>
+    </div>
+    <div class="dir-card" style="background: #eee; border:none; display: flex; align-items: center; justify-content: center;">
+        <span style="font-size: 2rem;">🧭</span>
+    </div>
+    <div class="dir-card">
+        <span class="emoji">☀️</span>
+        <span class="char">東</span><span class="pinyin">Dung</span><span class="eng">East</span>
+        <button class="listen-btn" onclick="speak('東')">🔊</button>
+    </div>
+
+    <div></div>
+    <div class="dir-card">
+        <span class="emoji">🔥</span>
+        <span class="char">南</span><span class="pinyin">Naam</span><span class="eng">South</span>
+        <button class="listen-btn" onclick="speak('南')">🔊</button>
+    </div>
+    <div></div>
+</div>
 
     <h2>🚪 In & Out</h2>
     <div class="location-box">
