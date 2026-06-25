@@ -1117,27 +1117,41 @@
 
     /* ---------- Voice Lab: recording ---------- */
     let mediaRecorder;
+    let mediaStream;
     let audioChunks = [];
     let audioBlob;
 
     async function startRecording() {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
-        mediaRecorder.onstop = () => {
-            // Use the recorder's actual format (typically webm/ogg) instead of mislabelling as wav
-            audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-            document.getElementById('playBtn').disabled = false;
-            document.getElementById('status').innerText = "Recording Saved!";
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaStream = stream;
             audioChunks = [];
-        };
-        mediaRecorder.start();
-        document.getElementById('recordBtn').disabled = true;
-        document.getElementById('stopBtn').disabled = false;
-        document.getElementById('status').innerText = "🔴 RECORDING...";
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
+            mediaRecorder.onstop = () => {
+                // Use the recorder's actual format (typically webm/ogg) instead of mislabelling as wav
+                audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('status').innerText = "Recording Saved!";
+                audioChunks = [];
+                // Release the microphone so the next recording can acquire it cleanly
+                stream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            };
+            mediaRecorder.start();
+            document.getElementById('recordBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            document.getElementById('status').innerText = "🔴 RECORDING...";
+        } catch (err) {
+            document.getElementById('status').innerText = "Microphone unavailable: " + err.message;
+            document.getElementById('recordBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+        }
     }
     function stopRecording() {
-        mediaRecorder.stop();
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+        }
         document.getElementById('recordBtn').disabled = false;
         document.getElementById('stopBtn').disabled = true;
     }
