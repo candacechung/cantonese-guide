@@ -114,11 +114,6 @@
         .meaning { color: #747d8c; font-size: 0.9rem; margin-bottom: 10px; }
         .emoji, .emoji-icon, .icon, .sign-icon { font-size: 1.8rem; display: block; margin-bottom: 5px; }
 
-        .listen-btn, .btn-speak {
-            background: #f1f2f6; color: var(--dark); margin-top: 10px; padding: 8px 15px;
-        }
-        .listen-btn:hover, .btn-speak:hover { background: #dfe4ea; }
-
         .interactive-box {
             background: #f1f2f6; padding: 20px; border-radius: 15px;
             text-align: center; margin: 20px 0; border: 3px solid #ffa502;
@@ -135,7 +130,15 @@
         .example-word { font-size: 2.8rem; display: block; margin-top: 10px; font-weight: bold; color: var(--dark); cursor: pointer; transition: 0.2s; }
         .example-word:hover { transform: scale(1.15); color: #ffa502; }
         /* Bigger radical pill — only in the Word Elements cards (those with an example word) */
-        .card:has(.example-word) .radical-tag { font-size: 1.15rem; padding: 4px 12px; }
+        .card:has(.example-word) .radical-tag { font-size: 1.10rem; padding: 3.5px 12px; display: inline-block; margin-top: 8px; }
+
+        /* Click-to-speak: every Chinese word is tappable */
+        .char, .char-big, .char-hero, .big-char, .speakable {
+            cursor: pointer; transition: color 0.15s, transform 0.15s;
+        }
+        .char:hover, .char-big:hover, .char-hero:hover, .big-char:hover, .speakable:hover {
+            color: #ffa502; transform: scale(1.05);
+        }
 
         /* Five Elements */
         .element-card { cursor: pointer; }
@@ -254,7 +257,7 @@
         and the silent “h”) used throughout the lessons.
     </div>
     <div class="audio-note">
-        🔊 Tap any character or “Listen” button to hear it. Audio uses your browser's built-in
+        🔊 Tap any Chinese word to hear it. Audio uses your browser's built-in
         Cantonese (<b>zh-HK</b>) voice — if you hear nothing, your device may need a Cantonese
         voice installed (Chrome, Edge and Safari usually include one).
     </div>
@@ -505,12 +508,12 @@
             <tr><th>Tone</th><th>Name</th><th>How Yale shows it</th><th>Example</th></tr>
         </thead>
         <tbody>
-            <tr><td>1</td><td>High</td><td>macron <b>ā</b> (or high-falling <b>à</b>)</td><td><span class="yale-eg">詩 sī</span></td></tr>
-            <tr><td>2</td><td>Mid-rising</td><td>acute accent <b>á</b></td><td><span class="yale-eg">史 sí</span></td></tr>
-            <tr><td>3</td><td>Mid-level</td><td>no mark</td><td><span class="yale-eg">試 si</span></td></tr>
-            <tr><td>4</td><td>Low-falling</td><td>grave accent + <b>h</b> → <b>àh</b></td><td><span class="yale-eg">時 sìh</span></td></tr>
-            <tr><td>5</td><td>Low-rising</td><td>acute accent + <b>h</b> → <b>áh</b></td><td><span class="yale-eg">市 síh</span></td></tr>
-            <tr><td>6</td><td>Low-level</td><td><b>h</b> only</td><td><span class="yale-eg">是 sih</span></td></tr>
+            <tr><td>1</td><td>High</td><td>macron <b>ā</b> (or high-falling <b>à</b>)</td><td><span class="yale-eg"><span class="speakable">詩</span> sī</span></td></tr>
+            <tr><td>2</td><td>Mid-rising</td><td>acute accent <b>á</b></td><td><span class="yale-eg"><span class="speakable">史</span> sí</span></td></tr>
+            <tr><td>3</td><td>Mid-level</td><td>no mark</td><td><span class="yale-eg"><span class="speakable">試</span> si</span></td></tr>
+            <tr><td>4</td><td>Low-falling</td><td>grave accent + <b>h</b> → <b>àh</b></td><td><span class="yale-eg"><span class="speakable">時</span> sìh</span></td></tr>
+            <tr><td>5</td><td>Low-rising</td><td>acute accent + <b>h</b> → <b>áh</b></td><td><span class="yale-eg"><span class="speakable">市</span> síh</span></td></tr>
+            <tr><td>6</td><td>Low-level</td><td><b>h</b> only</td><td><span class="yale-eg"><span class="speakable">是</span> sih</span></td></tr>
         </tbody>
     </table>
 
@@ -532,7 +535,7 @@
 
     <div class="challenge-box">
         <h3>🎙️ Recording Challenge</h3>
-        <p>1. Listen to a character above.<br>2. Press <b>Record</b> and say it yourself!<br>3. Play it back to see if you match the "Listen" button.</p>
+        <p>1. Tap any Chinese word on the site to hear how it sounds.<br>2. Press <b>Record</b> and say it yourself!<br>3. Play it back and compare it with what you heard.</p>
         <div id="status">Ready to practice?</div>
         <button id="recordBtn" class="rec-btn" onclick="startRecording()">🎤 Start Recording</button>
         <button id="stopBtn" class="rec-btn" style="background:#444;" onclick="stopRecording()" disabled>⏹️ Stop</button>
@@ -548,55 +551,55 @@
 
     <h2 class="meat-h">肉類 Meats <span>(yuhk leuih)</span></h2>
     <div class="grid">
-        <div class="card"><span class="emoji-icon">🐮</span><span class="char">牛肉</span><span class="pinyin">ngàuh yuhk</span><div class="eng">Beef</div><button class="listen-btn" onclick="speak('牛肉')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🐖</span><span class="char">豬肉</span><span class="pinyin">jyū yuhk</span><div class="eng">Pork</div><button class="listen-btn" onclick="speak('豬肉')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🐔</span><span class="char">雞肉</span><span class="pinyin">gāi yuhk</span><div class="eng">Chicken</div><button class="listen-btn" onclick="speak('雞肉')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🐑</span><span class="char">羊肉</span><span class="pinyin">yèuhng yuhk</span><div class="eng">Lamb</div><button class="listen-btn" onclick="speak('羊肉')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🐮</span><span class="char">牛肉</span><span class="pinyin">ngàuh yuhk</span><div class="eng">Beef</div></div>
+        <div class="card"><span class="emoji-icon">🐖</span><span class="char">豬肉</span><span class="pinyin">jyū yuhk</span><div class="eng">Pork</div></div>
+        <div class="card"><span class="emoji-icon">🐔</span><span class="char">雞肉</span><span class="pinyin">gāi yuhk</span><div class="eng">Chicken</div></div>
+        <div class="card"><span class="emoji-icon">🐑</span><span class="char">羊肉</span><span class="pinyin">yèuhng yuhk</span><div class="eng">Lamb</div></div>
     </div>
 
     <h2 class="sea-h">海鮮 Seafood <span>(hói sīn)</span></h2>
     <div class="grid">
-        <div class="card"><span class="emoji-icon">🐟</span><span class="char">魚</span><span class="pinyin">yú</span><div class="eng">Fish</div><button class="listen-btn" onclick="speak('魚')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🦐</span><span class="char">蝦</span><span class="pinyin">hā</span><div class="eng">Shrimp</div><button class="listen-btn" onclick="speak('蝦')">Listen 🔊</button></div>
-        <div class="card"><span class="char">蜆</span><span class="pinyin">hín</span><div class="eng">Clams</div><button class="listen-btn" onclick="speak('蜆')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🐟</span><span class="char">魚</span><span class="pinyin">yú</span><div class="eng">Fish</div></div>
+        <div class="card"><span class="emoji-icon">🦐</span><span class="char">蝦</span><span class="pinyin">hā</span><div class="eng">Shrimp</div></div>
+        <div class="card"><span class="char">蜆</span><span class="pinyin">hín</span><div class="eng">Clams</div></div>
     </div>
 
     <h2 class="veg-h">蔬菜 Vegetables <span>(sō choi)</span></h2>
     <div class="grid">
-        <div class="card"><span class="char">白菜</span><span class="pinyin">baahk choi</span><div class="eng">Bok Choy</div><button class="listen-btn" onclick="speak('白菜')">發音 🔊</button></div>
-        <div class="card"><span class="char">生菜</span><span class="pinyin">sāang choi</span><div class="eng">Lettuce</div><button class="listen-btn" onclick="speak('生菜')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍅</span><span class="char">番茄</span><span class="pinyin">fāan ké</span><div class="eng">Tomato</div><button class="listen-btn" onclick="speak('番茄')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🥕</span><span class="char">紅蘿蔔</span><span class="pinyin">hùhng lòh baahk</span><div class="eng">Carrot</div><button class="listen-btn" onclick="speak('紅蘿蔔')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🎃</span><span class="char">南瓜</span><span class="pinyin">nàahm gwā</span><div class="eng">Pumpkin</div><button class="listen-btn" onclick="speak('南瓜')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🥒</span><span class="char">翠玉瓜</span><span class="pinyin">cheui yuhk gwā</span><div class="eng">Zucchini</div><button class="listen-btn" onclick="speak('翠玉瓜')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍄</span><span class="char">蘑菇</span><span class="pinyin">mòh gū</span><div class="eng">Parisian Mushroom</div><button class="listen-btn" onclick="speak('蘑菇')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🌱</span><span class="char">韭菜</span><span class="pinyin">gáu choi</span><div class="eng">Chives</div><button class="listen-btn" onclick="speak('韭菜')">發音 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🌶️</span><span class="char">辣椒</span><span class="pinyin">laaht jīu</span><div class="eng">Chili</div><button class="listen-btn" onclick="speak('辣椒')">發音 🔊</button></div>
+        <div class="card"><span class="char">白菜</span><span class="pinyin">baahk choi</span><div class="eng">Bok Choy</div></div>
+        <div class="card"><span class="char">生菜</span><span class="pinyin">sāang choi</span><div class="eng">Lettuce</div></div>
+        <div class="card"><span class="emoji-icon">🍅</span><span class="char">番茄</span><span class="pinyin">fāan ké</span><div class="eng">Tomato</div></div>
+        <div class="card"><span class="emoji-icon">🥕</span><span class="char">紅蘿蔔</span><span class="pinyin">hùhng lòh baahk</span><div class="eng">Carrot</div></div>
+        <div class="card"><span class="emoji-icon">🎃</span><span class="char">南瓜</span><span class="pinyin">nàahm gwā</span><div class="eng">Pumpkin</div></div>
+        <div class="card"><span class="emoji-icon">🥒</span><span class="char">翠玉瓜</span><span class="pinyin">cheui yuhk gwā</span><div class="eng">Zucchini</div></div>
+        <div class="card"><span class="emoji-icon">🍄</span><span class="char">蘑菇</span><span class="pinyin">mòh gū</span><div class="eng">Parisian Mushroom</div></div>
+        <div class="card"><span class="emoji-icon">🌱</span><span class="char">韭菜</span><span class="pinyin">gáu choi</span><div class="eng">Chives</div></div>
+        <div class="card"><span class="emoji-icon">🌶️</span><span class="char">辣椒</span><span class="pinyin">laaht jīu</span><div class="eng">Chili</div></div>
     </div>
 
     <h2 class="staple-h">🍚 主食 Staple Foods <span>(jyú sihk)</span></h2>
     <div class="grid">
-        <div class="card"><span class="emoji">🍚</span><span class="char">飯</span><span class="pinyin">faahn</span><div class="eng">Cooked Rice</div><button class="listen-btn" onclick="speak('飯')">發音 🔊</button></div>
-        <div class="card"><span class="emoji">🌾</span><span class="char">米</span><span class="pinyin">máih</span><div class="eng">Uncooked Rice</div><button class="listen-btn" onclick="speak('米')">發音 🔊</button></div>
-        <div class="card"><span class="emoji">🍜</span><span class="char">麵</span><span class="pinyin">mihn</span><div class="eng">Noodles</div><button class="listen-btn" onclick="speak('麵')">發音 🔊</button></div>
-        <div class="card"><span class="emoji">🍞</span><span class="char">麵包</span><span class="pinyin">mihn bāau</span><div class="eng">Bread</div><button class="listen-btn" onclick="speak('麵包')">發音 🔊</button></div>
+        <div class="card"><span class="emoji">🍚</span><span class="char">飯</span><span class="pinyin">faahn</span><div class="eng">Cooked Rice</div></div>
+        <div class="card"><span class="emoji">🌾</span><span class="char">米</span><span class="pinyin">máih</span><div class="eng">Uncooked Rice</div></div>
+        <div class="card"><span class="emoji">🍜</span><span class="char">麵</span><span class="pinyin">mihn</span><div class="eng">Noodles</div></div>
+        <div class="card"><span class="emoji">🍞</span><span class="char">麵包</span><span class="pinyin">mihn bāau</span><div class="eng">Bread</div></div>
     </div>
 
     <h2 class="fruit-h">水果 Fruits <span>(séui gwó)</span></h2>
     <div class="grid">
-        <div class="card"><span class="emoji-icon">🍎</span><span class="char">蘋果</span><span class="pinyin">pìhng gwó</span><div class="eng">Apple</div><button class="listen-btn" onclick="speak('蘋果')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍌</span><span class="char">香蕉</span><span class="pinyin">hēung jīu</span><div class="eng">Banana</div><button class="listen-btn" onclick="speak('香蕉')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍉</span><span class="char">西瓜</span><span class="pinyin">sāi gwā</span><div class="eng">Watermelon</div><button class="listen-btn" onclick="speak('西瓜')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🍎</span><span class="char">蘋果</span><span class="pinyin">pìhng gwó</span><div class="eng">Apple</div></div>
+        <div class="card"><span class="emoji-icon">🍌</span><span class="char">香蕉</span><span class="pinyin">hēung jīu</span><div class="eng">Banana</div></div>
+        <div class="card"><span class="emoji-icon">🍉</span><span class="char">西瓜</span><span class="pinyin">sāi gwā</span><div class="eng">Watermelon</div></div>
     </div>
 
     <h2 class="dessert-h">甜品 Desserts <span>(tìhm bán)</span></h2>
     <div class="grid">
-        <div class="card"><span class="emoji-icon">🌼</span><span class="char">雲呢拿</span><span class="pinyin">wàhn nēi láh</span><div class="eng">Vanilla</div><button class="listen-btn" onclick="speak('雲呢拿')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍫</span><span class="char">朱古力</span><span class="pinyin">jyū gū līk</span><div class="eng">Chocolate</div><button class="listen-btn" onclick="speak('朱古力')">Listen 🔊</button></div>
-        <div class="card"><span class="char">開心果</span><span class="pinyin">hōi sām gwó</span><div class="eng">Pistachio</div><button class="listen-btn" onclick="speak('開心果')">Listen 🔊</button></div>
-        <div class="card"><span class="emoji-icon">🍦</span><span class="char">雪糕</span><span class="pinyin">syut gōu</span><div class="eng">Ice Cream</div><button class="listen-btn" onclick="speak('雪糕')">Listen 🔊</button></div>
-        <div class="card"><span class="char">雞尾包</span><span class="pinyin">gāi méih bāau</span><div class="eng">Cocktail Bun</div><button class="listen-btn" onclick="speak('雞尾包')">Listen 🔊</button></div>
-        <div class="card"><span class="char">菠蘿包</span><span class="pinyin">bō lòh bāau</span><div class="eng">Pineapple Bun</div><button class="listen-btn" onclick="speak('菠蘿包')">Listen 🔊</button></div>
+        <div class="card"><span class="emoji-icon">🌼</span><span class="char">雲呢拿</span><span class="pinyin">wàhn nēi láh</span><div class="eng">Vanilla</div></div>
+        <div class="card"><span class="emoji-icon">🍫</span><span class="char">朱古力</span><span class="pinyin">jyū gū līk</span><div class="eng">Chocolate</div></div>
+        <div class="card"><span class="char">開心果</span><span class="pinyin">hōi sām gwó</span><div class="eng">Pistachio</div></div>
+        <div class="card"><span class="emoji-icon">🍦</span><span class="char">雪糕</span><span class="pinyin">syut gōu</span><div class="eng">Ice Cream</div></div>
+        <div class="card"><span class="char">雞尾包</span><span class="pinyin">gāi méih bāau</span><div class="eng">Cocktail Bun</div></div>
+        <div class="card"><span class="char">菠蘿包</span><span class="pinyin">bō lòh bāau</span><div class="eng">Pineapple Bun</div></div>
     </div>
 </section>
 
@@ -612,14 +615,14 @@
             <span class="big-char">係</span>
             <b>haih</b>
             <p>Use this to say what something <b>IS</b>.</p>
-            <button class="listen-btn" onclick="speak('係')">Listen 🔊</button>
+            
         </div>
         <div class="logic-card negative">
             <span class="label">Not To Be / No</span>
             <span class="big-char">唔係</span>
             <b>m̀h haih</b>
             <p>Use this to say what something <b>IS NOT</b>.</p>
-            <button class="listen-btn" onclick="speak('唔係')">Listen 🔊</button>
+            
         </div>
     </div>
 
@@ -630,14 +633,14 @@
             <span class="big-char">好</span>
             <b>hóu</b>
             <p>Use this for "Good" or "Very."</p>
-            <button class="listen-btn" onclick="speak('好')">Listen 🔊</button>
+            
         </div>
         <div class="logic-card negative">
             <span class="label">Not Good / Bad</span>
             <span class="big-char">唔好</span>
             <b>m̀h hóu</b>
             <p>Use this for "Not Good" or "Don't."</p>
-            <button class="listen-btn" onclick="speak('唔好')">Listen 🔊</button>
+            
         </div>
     </div>
 
@@ -645,10 +648,10 @@
         <h3>🚀 Sentence Builder Challenge:</h3>
         <p>Combine these with your food words!</p>
         <ul style="list-style: none; padding: 0;">
-            <li>✅ <b>好食 (hóu sihk)</b> = Good to eat (Delicious!)</li>
-            <li>❌ <b>唔好食 (m̀h hóu sihk)</b> = Not good to eat (Yucky!)</li>
-            <li>✅ <b>係魚 (haih yú)</b> = It is a fish.</li>
-            <li>❌ <b>唔係魚 (m̀h haih yú)</b> = It is not a fish.</li>
+            <li>✅ <b><span class="speakable">好食</span> (hóu sihk)</b> = Good to eat (Delicious!)</li>
+            <li>❌ <b><span class="speakable">唔好食</span> (m̀h hóu sihk)</b> = Not good to eat (Yucky!)</li>
+            <li>✅ <b><span class="speakable">係魚</span> (haih yú)</b> = It is a fish.</li>
+            <li>❌ <b><span class="speakable">唔係魚</span> (m̀h haih yú)</b> = It is not a fish.</li>
         </ul>
     </div>
 
@@ -659,26 +662,26 @@
             <span class="big-char">有</span>
             <b>yáuh</b>
             <p>Use this for things you <b>OWN</b> or that <b>EXIST</b>.</p>
-            <button class="listen-btn" onclick="speak('有')">Listen 🔊</button>
+            
         </div>
         <div class="logic-card negative">
             <span class="label">To Not Have / There is not</span>
             <span class="big-char">無</span>
             <b>mòuh</b>
             <p>Use this when something is <b>MISSING</b>.</p>
-            <button class="listen-btn" onclick="speak('無')">Listen 🔊</button>
+            
         </div>
     </div>
 
     <div class="example-box">
         <h3>💡 Pro Tip: Existence Questions</h3>
-        <p>Just like "好唔好", you can combine these to ask "Do you have?":</p>
-        <p><b>「有無...?」 (yáuh mòuh...?)</b> = "Have or not have...?"</p>
+        <p>Just like "<span class="speakable">好唔好</span>", you can combine these to ask "Do you have?":</p>
+        <p><b>「<span class="speakable">有無</span>...?」 (yáuh mòuh...?)</b> = "Have or not have...?"</p>
         <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
         <ul style="list-style: none; padding: 0;">
-            <li>✅ <b>我有魚 (ngóh yáuh yú)</b> = I have fish.</li>
-            <li>❌ <b>我無錢 (ngóh mòuh chín)</b> = I have no money.</li>
-            <li>❓ <b>有無叉燒包? (yáuh mòuh chā sīu bāau?)</b> = Do you have BBQ pork buns?</li>
+            <li>✅ <b><span class="speakable">我有魚</span> (ngóh yáuh yú)</b> = I have fish.</li>
+            <li>❌ <b><span class="speakable">我無錢</span> (ngóh mòuh chín)</b> = I have no money.</li>
+            <li>❓ <b><span class="speakable">有無叉燒包</span>? (yáuh mòuh chā sīu bāau?)</b> = Do you have BBQ pork buns?</li>
         </ul>
     </div>
 </section>
@@ -691,40 +694,40 @@
     <h2>🔮 Future — 會 (will)</h2>
     <p>Put <b>會 (wúih)</b> <b>before</b> the verb to say you <b>will</b> do something.</p>
     <div class="grid">
-        <div class="card"><span class="char">我會去</span><span class="pinyin">ngóh wúih heui</span><div class="eng">I will go</div><button class="listen-btn" onclick="speak('我會去')">Listen 🔊</button></div>
-        <div class="card"><span class="char">我會食飯</span><span class="pinyin">ngóh wúih sihk faahn</span><div class="eng">I will eat</div><button class="listen-btn" onclick="speak('我會食飯')">Listen 🔊</button></div>
-        <div class="card"><span class="char">聽日會落雨</span><span class="pinyin">tīng yaht wúih lohk yúh</span><div class="eng">It will rain tomorrow</div><button class="listen-btn" onclick="speak('聽日會落雨')">Listen 🔊</button></div>
+        <div class="card"><span class="char">我會去</span><span class="pinyin">ngóh wúih heui</span><div class="eng">I will go</div></div>
+        <div class="card"><span class="char">我會食飯</span><span class="pinyin">ngóh wúih sihk faahn</span><div class="eng">I will eat</div></div>
+        <div class="card"><span class="char">聽日會落雨</span><span class="pinyin">tīng yaht wúih lohk yúh</span><div class="eng">It will rain tomorrow</div></div>
     </div>
 
     <h2>✅ Past / Done — 咗 (completed)</h2>
     <p>Add <b>咗 (jó)</b> right <b>after</b> the verb to show the action is <b>finished</b>.</p>
     <div class="grid">
-        <div class="card"><span class="char">我去咗</span><span class="pinyin">ngóh heui jó</span><div class="eng">I went / have gone</div><button class="listen-btn" onclick="speak('我去咗')">Listen 🔊</button></div>
-        <div class="card"><span class="char">我食咗飯</span><span class="pinyin">ngóh sihk jó faahn</span><div class="eng">I have eaten</div><button class="listen-btn" onclick="speak('我食咗飯')">Listen 🔊</button></div>
-        <div class="card"><span class="char">佢返咗工</span><span class="pinyin">kéuih fāan jó gūng</span><div class="eng">He/She went to work</div><button class="listen-btn" onclick="speak('佢返咗工')">Listen 🔊</button></div>
+        <div class="card"><span class="char">我去咗</span><span class="pinyin">ngóh heui jó</span><div class="eng">I went / have gone</div></div>
+        <div class="card"><span class="char">我食咗飯</span><span class="pinyin">ngóh sihk jó faahn</span><div class="eng">I have eaten</div></div>
+        <div class="card"><span class="char">佢返咗工</span><span class="pinyin">kéuih fāan jó gūng</span><div class="eng">He/She went to work</div></div>
     </div>
 
     <h2>⏱️ Right Now — 緊 (-ing)</h2>
     <p>Add <b>緊 (gán)</b> after the verb for an action happening <b>now</b>.</p>
     <div class="grid">
-        <div class="card"><span class="char">我食緊飯</span><span class="pinyin">ngóh sihk gán faahn</span><div class="eng">I am eating</div><button class="listen-btn" onclick="speak('我食緊飯')">Listen 🔊</button></div>
-        <div class="card"><span class="char">我行緊山</span><span class="pinyin">ngóh hàahng gán sāan</span><div class="eng">I am hiking</div><button class="listen-btn" onclick="speak('我行緊山')">Listen 🔊</button></div>
+        <div class="card"><span class="char">我食緊飯</span><span class="pinyin">ngóh sihk gán faahn</span><div class="eng">I am eating</div></div>
+        <div class="card"><span class="char">我行緊山</span><span class="pinyin">ngóh hàahng gán sāan</span><div class="eng">I am hiking</div></div>
     </div>
 
     <h2>🧳 Ever Done — 過 (experience)</h2>
     <p>Add <b>過 (gwo)</b> after the verb to say you have <b>ever</b> done it before.</p>
     <div class="grid">
-        <div class="card"><span class="char">我去過</span><span class="pinyin">ngóh heui gwo</span><div class="eng">I have been there before</div><button class="listen-btn" onclick="speak('我去過')">Listen 🔊</button></div>
-        <div class="card"><span class="char">我食過</span><span class="pinyin">ngóh sihk gwo</span><div class="eng">I have eaten it before</div><button class="listen-btn" onclick="speak('我食過')">Listen 🔊</button></div>
+        <div class="card"><span class="char">我去過</span><span class="pinyin">ngóh heui gwo</span><div class="eng">I have been there before</div></div>
+        <div class="card"><span class="char">我食過</span><span class="pinyin">ngóh sihk gwo</span><div class="eng">I have eaten it before</div></div>
     </div>
 
     <div class="example-box" style="border-left-color:#00b894;">
         <h3>💡 Quick Recap</h3>
         <ul style="list-style:none; padding:0; line-height:1.8;">
-            <li>🔮 <b>會 (wúih)</b> before the verb = <b>will</b> (future): 我<b>會</b>去</li>
-            <li>✅ <b>咗 (jó)</b> after the verb = <b>done</b> (past): 我去<b>咗</b></li>
-            <li>⏱️ <b>緊 (gán)</b> after the verb = <b>-ing</b> (now): 我食<b>緊</b>飯</li>
-            <li>🧳 <b>過 (gwo)</b> after the verb = <b>ever</b> (experience): 我去<b>過</b></li>
+            <li>🔮 <b><span class="speakable">會</span> (wúih)</b> before the verb = <b>will</b> (future): <span class="speakable">我<b>會</b>去</span></li>
+            <li>✅ <b><span class="speakable">咗</span> (jó)</b> after the verb = <b>done</b> (past): <span class="speakable">我去<b>咗</b></span></li>
+            <li>⏱️ <b><span class="speakable">緊</span> (gán)</b> after the verb = <b>-ing</b> (now): <span class="speakable">我食<b>緊</b>飯</span></li>
+            <li>🧳 <b><span class="speakable">過</span> (gwo)</b> after the verb = <b>ever</b> (experience): <span class="speakable">我去<b>過</b></span></li>
         </ul>
     </div>
 </section>
@@ -736,18 +739,18 @@
 
     <h2>🏢 Work & Home</h2>
     <div class="grid">
-        <div class="card"><span class="char">返工</span><span class="pinyin">fāan gūng</span><div class="eng">Go to Work</div><button class="listen-btn" onclick="speak('返工')">Listen 🔊</button></div>
-        <div class="card"><span class="char">放工</span><span class="pinyin">fong gūng</span><div class="eng">Finish Work</div><button class="listen-btn" onclick="speak('放工')">Listen 🔊</button></div>
-        <div class="card"><span class="char">返屋企</span><span class="pinyin">fāan ūk kéi</span><div class="eng">Go Home</div><button class="listen-btn" onclick="speak('返屋企')">Listen 🔊</button></div>
-        <div class="card"><span class="char">去...</span><span class="pinyin">heui...</span><div class="eng">Go to (Place)</div><button class="listen-btn" onclick="speak('去')">Listen 🔊</button></div>
+        <div class="card"><span class="char">返工</span><span class="pinyin">fāan gūng</span><div class="eng">Go to Work</div></div>
+        <div class="card"><span class="char">放工</span><span class="pinyin">fong gūng</span><div class="eng">Finish Work</div></div>
+        <div class="card"><span class="char">返屋企</span><span class="pinyin">fāan ūk kéi</span><div class="eng">Go Home</div></div>
+        <div class="card"><span class="char">去...</span><span class="pinyin">heui...</span><div class="eng">Go to (Place)</div></div>
     </div>
 
     <h2>🍕 Eating & Sleeping</h2>
     <div class="grid">
-        <div class="card"><span class="char">食飯</span><span class="pinyin">sihk faahn</span><div class="eng">Eat (a meal)</div><button class="listen-btn" onclick="speak('食飯')">Listen 🔊</button></div>
-        <div class="card"><span class="char">飲水</span><span class="pinyin">yám séui</span><div class="eng">Drink Water</div><button class="listen-btn" onclick="speak('飲水')">Listen 🔊</button></div>
-        <div class="card"><span class="char">瞓覺</span><span class="pinyin">fan gaau</span><div class="eng">Sleep</div><button class="listen-btn" onclick="speak('瞓覺')">Listen 🔊</button></div>
-        <div class="card"><span class="char">起身</span><span class="pinyin">héi sān</span><div class="eng">Wake up / Get up</div><button class="listen-btn" onclick="speak('起身')">Listen 🔊</button></div>
+        <div class="card"><span class="char">食飯</span><span class="pinyin">sihk faahn</span><div class="eng">Eat (a meal)</div></div>
+        <div class="card"><span class="char">飲水</span><span class="pinyin">yám séui</span><div class="eng">Drink Water</div></div>
+        <div class="card"><span class="char">瞓覺</span><span class="pinyin">fan gaau</span><div class="eng">Sleep</div></div>
+        <div class="card"><span class="char">起身</span><span class="pinyin">héi sān</span><div class="eng">Wake up / Get up</div></div>
     </div>
 
     <div class="example-box" style="border-left-color:#1abc9c; background:#e8f8f5;">
@@ -764,27 +767,27 @@
 
     <h2>💵 Asking the Price</h2>
     <div class="grid">
-        <div class="card"><span class="char">幾多錢?/幾錢?</span><span class="pinyin">géi dō chín?/géi chín?</span><div class="eng">How much?</div><button class="listen-btn" onclick="speak('幾多錢?幾錢?')">Listen 🔊</button></div>
-        <div class="card"><span class="char">蚊</span><span class="pinyin">mān</span><div class="eng">Dollar</div><button class="listen-btn" onclick="speak('蚊')">Listen 🔊</button></div>
-        <div class="card"><span class="char">毫子</span><span class="pinyin">hòuh jí</span><div class="eng">Cents</div><button class="listen-btn" onclick="speak('毫子')">Listen 🔊</button></div>
-        <div class="card"><span class="char">找錢</span><span class="pinyin">jáau chín</span><div class="eng">Change (money back)</div><button class="listen-btn" onclick="speak('找錢')">Listen 🔊</button></div>
+        <div class="card"><span class="char">幾多錢?/幾錢?</span><span class="pinyin">géi dō chín?/géi chín?</span><div class="eng">How much?</div></div>
+        <div class="card"><span class="char">蚊</span><span class="pinyin">mān</span><div class="eng">Dollar</div></div>
+        <div class="card"><span class="char">毫子</span><span class="pinyin">hòuh jí</span><div class="eng">Cents</div></div>
+        <div class="card"><span class="char">找錢</span><span class="pinyin">jáau chín</span><div class="eng">Change (money back)</div></div>
     </div>
 
     <h2>🛍️ Buying & Bargaining</h2>
     <div class="grid">
-        <div class="card"><span class="char">買</span><span class="pinyin">máaih</span><div class="eng">to Buy</div><button class="listen-btn" onclick="speak('買')">Listen 🔊</button></div>
-        <div class="card"><span class="char">賣</span><span class="pinyin">maaih</span><div class="eng">to Sell</div><button class="listen-btn" onclick="speak('賣')">Listen 🔊</button></div>
-        <div class="card"><span class="char">平</span><span class="pinyin">pèhng</span><div class="eng">Cheap</div><button class="listen-btn" onclick="speak('平')">Listen 🔊</button></div>
-        <div class="card"><span class="char">貴</span><span class="pinyin">gwai</span><div class="eng">Expensive</div><button class="listen-btn" onclick="speak('貴')">Listen 🔊</button></div>
-        <div class="card"><span class="char">平啲啦</span><span class="pinyin">pèhng dī lā</span><div class="eng">Cheaper, please</div><button class="listen-btn" onclick="speak('平啲啦')">Listen 🔊</button></div>
+        <div class="card"><span class="char">買</span><span class="pinyin">máaih</span><div class="eng">to Buy</div></div>
+        <div class="card"><span class="char">賣</span><span class="pinyin">maaih</span><div class="eng">to Sell</div></div>
+        <div class="card"><span class="char">平</span><span class="pinyin">pèhng</span><div class="eng">Cheap</div></div>
+        <div class="card"><span class="char">貴</span><span class="pinyin">gwai</span><div class="eng">Expensive</div></div>
+        <div class="card"><span class="char">平啲啦</span><span class="pinyin">pèhng dī lā</span><div class="eng">Cheaper, please</div></div>
     </div>
 
     <div class="example-box" style="border-left-color:#16a085;">
         <h3>🗣️ Mini Dialogue: At the Market</h3>
         <ul style="list-style:none; padding:0;">
-            <li>🧍 <b>呢個幾多錢? (nī go géi dō chín?)</b> = How much is this?</li>
-            <li>🧑‍🍳 <b>十蚊 (sahp mān)</b> = Ten dollars.</li>
-            <li>🧍 <b>平啲得唔得? (pèhng dī dāk m̀h dāk?)</b> = Can it be cheaper?</li>
+            <li>🧍 <b><span class="speakable">呢個幾多錢</span>? (nī go géi dō chín?)</b> = How much is this?</li>
+            <li>🧑‍🍳 <b><span class="speakable">十蚊</span> (sahp mān)</b> = Ten dollars.</li>
+            <li>🧍 <b><span class="speakable">平啲得唔得</span>? (pèhng dī dāk m̀h dāk?)</b> = Can it be cheaper?</li>
         </ul>
     </div>
 </section>
@@ -796,34 +799,34 @@
 
     <h2>🕐 Telling Time</h2>
     <div class="grid">
-        <div class="card"><span class="char">而家幾點?</span><span class="pinyin">yìh gā géi dím?</span><div class="eng">What time now?</div><button class="listen-btn" onclick="speak('而家幾點')">Listen 🔊</button></div>
-        <div class="card"><span class="char">點鐘</span><span class="pinyin">dím jūng</span><div class="eng">O'clock</div><button class="listen-btn" onclick="speak('點鐘')">Listen 🔊</button></div>
-        <div class="card"><span class="char">半</span><span class="pinyin">bun</span><div class="eng">Half (past)</div><button class="listen-btn" onclick="speak('半')">Listen 🔊</button></div>
+        <div class="card"><span class="char">而家幾點?</span><span class="pinyin">yìh gā géi dím?</span><div class="eng">What time now?</div></div>
+        <div class="card"><span class="char">點鐘</span><span class="pinyin">dím jūng</span><div class="eng">O'clock</div></div>
+        <div class="card"><span class="char">半</span><span class="pinyin">bun</span><div class="eng">Half (past)</div></div>
     </div>
 
     <h2>🌅 Parts of the Day</h2>
     <div class="grid">
-        <div class="card"><span class="char">朝早</span><span class="pinyin">jīu jóu</span><div class="eng">Morning</div><button class="listen-btn" onclick="speak('朝早')">Listen 🔊</button></div>
-        <div class="card"><span class="char">晏晝</span><span class="pinyin">ngaan jau</span><div class="eng">Afternoon</div><button class="listen-btn" onclick="speak('晏晝')">Listen 🔊</button></div>
-        <div class="card"><span class="char">夜晚</span><span class="pinyin">yeh máahn</span><div class="eng">Night</div><button class="listen-btn" onclick="speak('夜晚')">Listen 🔊</button></div>
+        <div class="card"><span class="char">朝早</span><span class="pinyin">jīu jóu</span><div class="eng">Morning</div></div>
+        <div class="card"><span class="char">晏晝</span><span class="pinyin">ngaan jau</span><div class="eng">Afternoon</div></div>
+        <div class="card"><span class="char">夜晚</span><span class="pinyin">yeh máahn</span><div class="eng">Night</div></div>
     </div>
 
     <h2>📅 Today & Around</h2>
     <div class="grid">
-        <div class="card"><span class="char">今日</span><span class="pinyin">gām yaht</span><div class="eng">Today</div><button class="listen-btn" onclick="speak('今日')">Listen 🔊</button></div>
-        <div class="card"><span class="char">聽日</span><span class="pinyin">tīng yaht</span><div class="eng">Tomorrow</div><button class="listen-btn" onclick="speak('聽日')">Listen 🔊</button></div>
-        <div class="card"><span class="char">琴日</span><span class="pinyin">kàhm yaht</span><div class="eng">Yesterday</div><button class="listen-btn" onclick="speak('琴日')">Listen 🔊</button></div>
+        <div class="card"><span class="char">今日</span><span class="pinyin">gām yaht</span><div class="eng">Today</div></div>
+        <div class="card"><span class="char">聽日</span><span class="pinyin">tīng yaht</span><div class="eng">Tomorrow</div></div>
+        <div class="card"><span class="char">琴日</span><span class="pinyin">kàhm yaht</span><div class="eng">Yesterday</div></div>
     </div>
 
     <h2>🗓️ Days of the Week</h2>
     <div class="grid">
-        <div class="card"><span class="char">星期一</span><span class="pinyin">sīng kèih yāt</span><div class="eng">Monday</div><button class="listen-btn" onclick="speak('星期一')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期二</span><span class="pinyin">sīng kèih yih</span><div class="eng">Tuesday</div><button class="listen-btn" onclick="speak('星期二')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期三</span><span class="pinyin">sīng kèih sāam</span><div class="eng">Wednesday</div><button class="listen-btn" onclick="speak('星期三')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期四</span><span class="pinyin">sīng kèih sei</span><div class="eng">Thursday</div><button class="listen-btn" onclick="speak('星期四')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期五</span><span class="pinyin">sīng kèih ńgh</span><div class="eng">Friday</div><button class="listen-btn" onclick="speak('星期五')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期六</span><span class="pinyin">sīng kèih luhk</span><div class="eng">Saturday</div><button class="listen-btn" onclick="speak('星期六')">Listen 🔊</button></div>
-        <div class="card"><span class="char">星期日</span><span class="pinyin">sīng kèih yaht</span><div class="eng">Sunday</div><button class="listen-btn" onclick="speak('星期日')">Listen 🔊</button></div>
+        <div class="card"><span class="char">星期一</span><span class="pinyin">sīng kèih yāt</span><div class="eng">Monday</div></div>
+        <div class="card"><span class="char">星期二</span><span class="pinyin">sīng kèih yih</span><div class="eng">Tuesday</div></div>
+        <div class="card"><span class="char">星期三</span><span class="pinyin">sīng kèih sāam</span><div class="eng">Wednesday</div></div>
+        <div class="card"><span class="char">星期四</span><span class="pinyin">sīng kèih sei</span><div class="eng">Thursday</div></div>
+        <div class="card"><span class="char">星期五</span><span class="pinyin">sīng kèih ńgh</span><div class="eng">Friday</div></div>
+        <div class="card"><span class="char">星期六</span><span class="pinyin">sīng kèih luhk</span><div class="eng">Saturday</div></div>
+        <div class="card"><span class="char">星期日</span><span class="pinyin">sīng kèih yaht</span><div class="eng">Sunday</div></div>
     </div>
 </section>
 
@@ -834,29 +837,29 @@
 
     <h2>🚆 Ways to Travel</h2>
     <div class="grid">
-        <div class="card"><span class="char">巴士</span><span class="pinyin">bā sí</span><div class="eng">Bus</div><button class="listen-btn" onclick="speak('巴士')">Listen 🔊</button></div>
-        <div class="card"><span class="char">港鐵</span><span class="pinyin">góng tit</span><div class="eng">MTR (Subway)</div><button class="listen-btn" onclick="speak('港鐵')">Listen 🔊</button></div>
-        <div class="card"><span class="char">的士</span><span class="pinyin">dīk sí</span><div class="eng">Taxi</div><button class="listen-btn" onclick="speak('的士')">Listen 🔊</button></div>
-        <div class="card"><span class="char">小巴</span><span class="pinyin">síu bā</span><div class="eng">Minibus</div><button class="listen-btn" onclick="speak('小巴')">Listen 🔊</button></div>
-        <div class="card"><span class="char">渡輪</span><span class="pinyin">douh lèuhn</span><div class="eng">Ferry</div><button class="listen-btn" onclick="speak('渡輪')">Listen 🔊</button></div>
-        <div class="card"><span class="char">電車/叮叮</span><span class="pinyin">dihn chē/dīng dīng</span><div class="eng">Tram</div><button class="listen-btn" onclick="speak('電車. 叮叮')">Listen 🔊</button></div>
+        <div class="card"><span class="char">巴士</span><span class="pinyin">bā sí</span><div class="eng">Bus</div></div>
+        <div class="card"><span class="char">港鐵</span><span class="pinyin">góng tit</span><div class="eng">MTR (Subway)</div></div>
+        <div class="card"><span class="char">的士</span><span class="pinyin">dīk sí</span><div class="eng">Taxi</div></div>
+        <div class="card"><span class="char">小巴</span><span class="pinyin">síu bā</span><div class="eng">Minibus</div></div>
+        <div class="card"><span class="char">渡輪</span><span class="pinyin">douh lèuhn</span><div class="eng">Ferry</div></div>
+        <div class="card"><span class="char">電車/叮叮</span><span class="pinyin">dihn chē/dīng dīng</span><div class="eng">Tram</div></div>
     </div>
 
     <h2>🎫 Riding & Asking</h2>
     <div class="grid">
-        <div class="card"><span class="char">八達通</span><span class="pinyin">baat daaht tūng</span><div class="eng">Octopus Card</div><button class="listen-btn" onclick="speak('八達通')">Listen 🔊</button></div>
-        <div class="card"><span class="char">上車</span><span class="pinyin">séuhng chē</span><div class="eng">Get on (board)</div><button class="listen-btn" onclick="speak('上車')">Listen 🔊</button></div>
-        <div class="card"><span class="char">落車</span><span class="pinyin">lohk chē</span><div class="eng">Get off</div><button class="listen-btn" onclick="speak('落車')">Listen 🔊</button></div>
-        <div class="card"><span class="char">車站</span><span class="pinyin">chē jaahm</span><div class="eng">Station / Stop</div><button class="listen-btn" onclick="speak('車站')">Listen 🔊</button></div>
-        <div class="card"><span class="char">去邊度?</span><span class="pinyin">heui bīn douh?</span><div class="eng">Where to?</div><button class="listen-btn" onclick="speak('去邊度')">Listen 🔊</button></div>
+        <div class="card"><span class="char">八達通</span><span class="pinyin">baat daaht tūng</span><div class="eng">Octopus Card</div></div>
+        <div class="card"><span class="char">上車</span><span class="pinyin">séuhng chē</span><div class="eng">Get on (board)</div></div>
+        <div class="card"><span class="char">落車</span><span class="pinyin">lohk chē</span><div class="eng">Get off</div></div>
+        <div class="card"><span class="char">車站</span><span class="pinyin">chē jaahm</span><div class="eng">Station / Stop</div></div>
+        <div class="card"><span class="char">去邊度?</span><span class="pinyin">heui bīn douh?</span><div class="eng">Where to?</div></div>
     </div>
 
     <div class="example-box" style="border-left-color:#d35400;">
         <h3>🗣️ Mini Dialogue: Taking a Taxi</h3>
         <ul style="list-style:none; padding:0;">
-            <li>🧍 <b>我想去中環 (ngóh séung heui jūng wàahn)</b> = I'd like to go to Central.</li>
-            <li>🚕 <b>好,上車啦 (hóu, séuhng chē lā)</b> = OK, hop in.</li>
-            <li>🧍 <b>呢度落車 (nī douh lohk chē)</b> = I'll get off here.</li>
+            <li>🧍 <b><span class="speakable">我想去中環</span> (ngóh séung heui jūng wàahn)</b> = I'd like to go to Central.</li>
+            <li>🚕 <b><span class="speakable">好,上車啦</span> (hóu, séuhng chē lā)</b> = OK, hop in.</li>
+            <li>🧍 <b><span class="speakable">呢度落車</span> (nī douh lohk chē)</b> = I'll get off here.</li>
         </ul>
     </div>
 </section>
@@ -868,54 +871,54 @@
     <h2>📍 Where are we?</h2>
     <div class="location-box">
         <div class="loc-item">
-            <span class="emoji">🎯</span><span style="font-size: 1.5rem;">呢度</span><br>
+            <span class="emoji">🎯</span><span class="speakable" style="font-size: 1.5rem;">呢度</span><br>
             <span class="pinyin">nī douh</span><br><span class="eng">HERE</span><br>
-            <button class="listen-btn" onclick="speak('呢度')">Listen 🔊</button>
+            
         </div>
         <div class="loc-item">
-            <span class="emoji">👉</span><span style="font-size: 1.5rem;">嗰度</span><br>
+            <span class="emoji">👉</span><span class="speakable" style="font-size: 1.5rem;">嗰度</span><br>
             <span class="pinyin">gó douh</span><br><span class="eng">THERE</span><br>
-            <button class="listen-btn" onclick="speak('嗰度')">Listen 🔊</button>
+            
         </div>
         <div class="loc-item">
-            <span class="emoji">❓</span><span style="font-size: 1.5rem;">邊度?</span><br>
+            <span class="emoji">❓</span><span class="speakable" style="font-size: 1.5rem;">邊度?</span><br>
             <span class="pinyin">bīn douh?</span><br><span class="eng">WHERE?</span><br>
-            <button class="listen-btn" onclick="speak('邊度')">Listen 🔊</button>
+            
         </div>
     </div>
 
     <h2>🗺️ The 4 Directions</h2>
     <div class="compass-grid">
         <div></div>
-        <div class="dir-card"><span class="emoji">⬆️</span><span class="char">上</span><span class="pinyin">seuhng</span><span class="eng">Up</span><br><button class="listen-btn" onclick="speak('上')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">⬆️</span><span class="char">上</span><span class="pinyin">seuhng</span><span class="eng">Up</span><br></div>
         <div></div>
-        <div class="dir-card"><span class="emoji">⬅️</span><span class="char">左</span><span class="pinyin">jó</span><span class="eng">Left</span><br><button class="listen-btn" onclick="speak('左')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">⬅️</span><span class="char">左</span><span class="pinyin">jó</span><span class="eng">Left</span><br></div>
         <div class="dir-card" style="background: #eee; border:none; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2rem;">📍</span></div>
-        <div class="dir-card"><span class="emoji">➡️</span><span class="char">右</span><span class="pinyin">yauh</span><span class="eng">Right</span><br><button class="listen-btn" onclick="speak('右')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">➡️</span><span class="char">右</span><span class="pinyin">yauh</span><span class="eng">Right</span><br></div>
         <div></div>
-        <div class="dir-card"><span class="emoji">⬇️</span><span class="char">下</span><span class="pinyin">hah</span><span class="eng">Down</span><br><button class="listen-btn" onclick="speak('下')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">⬇️</span><span class="char">下</span><span class="pinyin">hah</span><span class="eng">Down</span><br></div>
         <div></div>
     </div>
 
     <h2>🧭 Cardinal Directions</h2>
     <div class="compass-grid">
         <div></div>
-        <div class="dir-card"><span class="emoji">❄️</span><span class="char">北</span><span class="pinyin">bāk</span><span class="eng">North</span><br><button class="listen-btn" onclick="speak('北')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">❄️</span><span class="char">北</span><span class="pinyin">bāk</span><span class="eng">North</span><br></div>
         <div></div>
-        <div class="dir-card"><span class="emoji">🌅</span><span class="char">西</span><span class="pinyin">sāi</span><span class="eng">West</span><br><button class="listen-btn" onclick="speak('西')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">🌅</span><span class="char">西</span><span class="pinyin">sāi</span><span class="eng">West</span><br></div>
         <div class="dir-card" style="background: #eee; border:none; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2rem;">🧭</span></div>
-        <div class="dir-card"><span class="emoji">☀️</span><span class="char">東</span><span class="pinyin">dūng</span><span class="eng">East</span><br><button class="listen-btn" onclick="speak('東')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">☀️</span><span class="char">東</span><span class="pinyin">dūng</span><span class="eng">East</span><br></div>
         <div></div>
-        <div class="dir-card"><span class="emoji">🔥</span><span class="char">南</span><span class="pinyin">nàahm</span><span class="eng">South</span><br><button class="listen-btn" onclick="speak('南')">🔊</button></div>
+        <div class="dir-card"><span class="emoji">🔥</span><span class="char">南</span><span class="pinyin">nàahm</span><span class="eng">South</span><br></div>
         <div></div>
     </div>
 
     <h2>🚪 In & Out</h2>
     <div class="location-box">
-        <div class="dir-card" style="min-width: 100px;"><span class="emoji">⏫</span><span class="char">前</span><span class="pinyin">chìhn</span><span class="eng">Front</span><br><button class="listen-btn" onclick="speak('前')">🔊</button></div>
-        <div class="dir-card" style="min-width: 100px;"><span class="emoji">⏬</span><span class="char">後</span><span class="pinyin">hauh</span><span class="eng">Back</span><br><button class="listen-btn" onclick="speak('後')">🔊</button></div>
-        <div class="dir-card" style="min-width: 100px;"><span class="emoji">🚶‍♂️➡️</span><span class="char">出</span><span class="pinyin">chēut</span><span class="eng">Exit</span><br><button class="listen-btn" onclick="speak('出')">🔊</button></div>
-        <div class="dir-card" style="min-width: 100px;"><span class="emoji">➡️🚶‍♂️</span><span class="char">入</span><span class="pinyin">yahp</span><span class="eng">Enter</span><br><button class="listen-btn" onclick="speak('入')">🔊</button></div>
+        <div class="dir-card" style="min-width: 100px;"><span class="emoji">⏫</span><span class="char">前</span><span class="pinyin">chìhn</span><span class="eng">Front</span><br></div>
+        <div class="dir-card" style="min-width: 100px;"><span class="emoji">⏬</span><span class="char">後</span><span class="pinyin">hauh</span><span class="eng">Back</span><br></div>
+        <div class="dir-card" style="min-width: 100px;"><span class="emoji">🚶‍♂️➡️</span><span class="char">出</span><span class="pinyin">chēut</span><span class="eng">Exit</span><br></div>
+        <div class="dir-card" style="min-width: 100px;"><span class="emoji">➡️🚶‍♂️</span><span class="char">入</span><span class="pinyin">yahp</span><span class="eng">Enter</span><br></div>
     </div>
 </section>
 
@@ -929,31 +932,31 @@
             <span class="char-hero">口</span><span class="romanization">háu</span>
             <div class="meaning">Mouth / Opening</div>
             <div class="visual-hint">👄 An open mouth</div>
-            <button class="btn-speak" onclick="speak('口')">Listen 🔊</button>
+            
         </div>
         <div class="pic-card">
             <span class="char-hero">手</span><span class="romanization">sáu</span>
             <div class="meaning">Hand</div>
             <div class="visual-hint">🖐️ Fingers and a palm</div>
-            <button class="btn-speak" onclick="speak('手')">Listen 🔊</button>
+            
         </div>
         <div class="pic-card">
             <span class="char-hero">田</span><span class="romanization">tìhn</span>
             <div class="meaning">Field / Farm</div>
             <div class="visual-hint">🌾 A grid of rice paddies</div>
-            <button class="btn-speak" onclick="speak('田')">Listen 🔊</button>
+            
         </div>
         <div class="pic-card">
             <span class="char-hero">山</span><span class="romanization">sāan</span>
             <div class="meaning">Mountain</div>
             <div class="visual-hint">⛰️ Three mountain peaks</div>
-            <button class="btn-speak" onclick="speak('山')">Listen 🔊</button>
+            
         </div>
         <div class="pic-card">
             <span class="char-hero">中</span><span class="romanization">jūng</span>
             <div class="meaning">Middle / Center</div>
             <div class="visual-hint">🎯 A line through the center</div>
-            <button class="btn-speak" onclick="speak('中')">Listen 🔊</button>
+            
         </div>
     </div>
 </section>
@@ -965,19 +968,19 @@
 
     <h2>⛰️ Movement & Terrain</h2>
     <div class="grid">
-        <div class="card"><span class="char">上山</span><span class="pinyin">seuhng sāan</span><div class="eng">Go Up Hill</div><button class="listen-btn" onclick="speak('上山')">Listen 🔊</button></div>
-        <div class="card"><span class="char">下山</span><span class="pinyin">hah sāan</span><div class="eng">Go Down Hill</div><button class="listen-btn" onclick="speak('下山')">Listen 🔊</button></div>
-        <div class="card"><span class="char">行慢啲</span><span class="pinyin">hàahng maahn dī</span><div class="eng">Walk Slowly</div><button class="listen-btn" onclick="speak('行慢啲')">Listen 🔊</button></div>
-        <div class="card"><span class="char">小心</span><span class="pinyin">síu sām</span><div class="eng">Careful!</div><button class="listen-btn" onclick="speak('小心')">Listen 🔊</button></div>
-        <div class="card"><span class="char">樓梯</span><span class="pinyin">làuh tāi</span><div class="eng">Stairs</div><button class="listen-btn" onclick="speak('樓梯')">Listen 🔊</button></div>
-        <div class="card"><span class="char">斜路</span><span class="pinyin">chèh louh</span><div class="eng">Slope</div><button class="listen-btn" onclick="speak('斜路')">Listen 🔊</button></div>
+        <div class="card"><span class="char">上山</span><span class="pinyin">seuhng sāan</span><div class="eng">Go Up Hill</div></div>
+        <div class="card"><span class="char">下山</span><span class="pinyin">hah sāan</span><div class="eng">Go Down Hill</div></div>
+        <div class="card"><span class="char">行慢啲</span><span class="pinyin">hàahng maahn dī</span><div class="eng">Walk Slowly</div></div>
+        <div class="card"><span class="char">小心</span><span class="pinyin">síu sām</span><div class="eng">Careful!</div></div>
+        <div class="card"><span class="char">樓梯</span><span class="pinyin">làuh tāi</span><div class="eng">Stairs</div></div>
+        <div class="card"><span class="char">斜路</span><span class="pinyin">chèh louh</span><div class="eng">Slope</div></div>
     </div>
 
     <h2 class="danger-h">⚠️ Warnings (警告)</h2>
     <div class="grid">
-        <div class="card danger-card"><span class="sign-icon">🔥</span><span class="char">山火</span><span class="pinyin">sāan fó</span><div class="eng">Mountain Fire</div><button class="listen-btn" onclick="speak('山火')">Listen 🔊</button></div>
-        <div class="card danger-card"><span class="sign-icon">⚡</span><span class="char">電纜</span><span class="pinyin">dihn láahm</span><div class="eng">Electric Cables</div><button class="listen-btn" onclick="speak('電纜')">Listen 🔊</button></div>
-        <div class="card danger-card"><span class="sign-icon">🚫</span><span class="char">危險</span><span class="pinyin">ngàih hím</span><div class="eng">Danger</div><button class="listen-btn" onclick="speak('危險')">Listen 🔊</button></div>
+        <div class="card danger-card"><span class="sign-icon">🔥</span><span class="char">山火</span><span class="pinyin">sāan fó</span><div class="eng">Mountain Fire</div></div>
+        <div class="card danger-card"><span class="sign-icon">⚡</span><span class="char">電纜</span><span class="pinyin">dihn láahm</span><div class="eng">Electric Cables</div></div>
+        <div class="card danger-card"><span class="sign-icon">🚫</span><span class="char">危險</span><span class="pinyin">ngàih hím</span><div class="eng">Danger</div></div>
     </div>
 </section>
 
@@ -988,17 +991,17 @@
 
     <h2>☀️ Daily Weather</h2>
     <div class="grid">
-        <div class="card"><span class="icon">☀️</span><span class="char">好天</span><span class="pinyin">hóu tīn</span><div class="eng">Fine Weather</div><button class="listen-btn" onclick="speak('好天')">Listen 🔊</button></div>
-        <div class="card"><span class="icon">🥵</span><span class="char">好熱</span><span class="pinyin">hóu yiht</span><div class="eng">Very Hot</div><button class="listen-btn" onclick="speak('好熱')">Listen 🔊</button></div>
-        <div class="card"><span class="icon">🌧️</span><span class="char">落雨</span><span class="pinyin">lohk yúh</span><div class="eng">Raining</div><button class="listen-btn" onclick="speak('落雨')">Listen 🔊</button></div>
-        <div class="card"><span class="icon">🌬️</span><span class="char">好大風</span><span class="pinyin">hóu daaih fūng</span><div class="eng">Very Windy</div><button class="listen-btn" onclick="speak('好大風')">Listen 🔊</button></div>
+        <div class="card"><span class="icon">☀️</span><span class="char">好天</span><span class="pinyin">hóu tīn</span><div class="eng">Fine Weather</div></div>
+        <div class="card"><span class="icon">🥵</span><span class="char">好熱</span><span class="pinyin">hóu yiht</span><div class="eng">Very Hot</div></div>
+        <div class="card"><span class="icon">🌧️</span><span class="char">落雨</span><span class="pinyin">lohk yúh</span><div class="eng">Raining</div></div>
+        <div class="card"><span class="icon">🌬️</span><span class="char">好大風</span><span class="pinyin">hóu daaih fūng</span><div class="eng">Very Windy</div></div>
     </div>
 
     <h2 class="storm-h">⛈️ Warning Signals</h2>
     <div class="grid">
-        <div class="card"><span class="icon">🌀</span><span class="char">打風</span><span class="pinyin">dá fūng</span><div class="eng">Typhoon</div><button class="listen-btn" onclick="speak('打風')">Listen 🔊</button></div>
-        <div class="card"><span class="icon">⚡</span><span class="char">雷暴</span><span class="pinyin">lèuih bouh</span><div class="eng">Thunderstorm</div><button class="listen-btn" onclick="speak('雷暴')">Listen 🔊</button></div>
-        <div class="card"><span class="icon">🌫️</span><span class="char">有霧</span><span class="pinyin">yáuh mouh</span><div class="eng">Foggy</div><button class="listen-btn" onclick="speak('有霧')">Listen 🔊</button></div>
+        <div class="card"><span class="icon">🌀</span><span class="char">打風</span><span class="pinyin">dá fūng</span><div class="eng">Typhoon</div></div>
+        <div class="card"><span class="icon">⚡</span><span class="char">雷暴</span><span class="pinyin">lèuih bouh</span><div class="eng">Thunderstorm</div></div>
+        <div class="card"><span class="icon">🌫️</span><span class="char">有霧</span><span class="pinyin">yáuh mouh</span><div class="eng">Foggy</div></div>
     </div>
 </section>
 
@@ -1034,12 +1037,23 @@
     /* ---------- Core speech ---------- */
     function speak(text) {
         window.speechSynthesis.cancel(); // avoid overlap on fast clicks
-        const utterance = new SpeechSynthesisUtterance(text);
+        // Remove symbols a TTS voice might read aloud (slashes, brackets, etc.) so only the words are spoken
+        const clean = String(text).replace(/[\/／\\|~^*_#@&<>=+()（）\[\]{}「」『』]/g, ' ').replace(/\s+/g, ' ').trim();
+        if (!clean) return;
+        const utterance = new SpeechSynthesisUtterance(clean);
         utterance.lang = 'zh-HK';   // Cantonese (Hong Kong)
         utterance.rate = 0.8;       // slightly slower for learners
         utterance.pitch = 1;
         window.speechSynthesis.speak(utterance);
     }
+
+    /* ---------- Click-to-speak: make every Chinese word tappable ---------- */
+    document.querySelectorAll('.char, .char-big, .char-hero, .big-char, .speakable').forEach(el => {
+        el.addEventListener('click', () => {
+            const text = el.textContent.trim();
+            if (text) speak(text);
+        });
+    });
 
     /* ---------- Home: Word of the Moment + Mini Quiz ---------- */
     const words = [

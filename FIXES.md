@@ -238,3 +238,57 @@ already had one, is now simply unused/harmless.)
 Verification: 15 `<section>` opens = 15 closes = 15 nav anchors; `#tenses` id + anchor present;
 11 word-element chars now `1.6rem` (0 left at `2.4rem`); scoped radical rule present; single
 valid document. Yale tones for the new examples are best-effort; native spot-check advisable.
+
+---
+
+## 2026-06-25 — Standardized click-to-speak; removed Listen/發音 buttons
+
+Home and Characters already let you tap the Chinese word to hear it; the rest of the site
+used "Listen 🔊" / "發音 🔊" buttons. Standardized the whole site on tap-the-word:
+
+- **Removed all 125 word buttons** (`listen-btn` ×120, `btn-speak` ×5) via a single regex
+  pass, plus their now-unused CSS rules. Kept the Recording Challenge, scored-quiz, and Home
+  interactive buttons (Random Word, Mini-Quiz options, Radical hints).
+- **One delegated click handler** makes every Chinese-word element speak its own text:
+  `document.querySelectorAll('.char, .char-big, .char-hero, .big-char, .speakable')` →
+  `speak(el.textContent.trim())`. Multi-character phrases (e.g. 我會去, 幾多錢?) read in full.
+- **Discoverability/affordance:** added pointer cursor + a hover highlight (color + slight
+  scale) to those word classes, and updated the Home note to "Tap any Chinese word to hear it."
+- **Nav location words** (呢度 / 嗰度 / 邊度?) were bare spans, so they got a `speakable` class
+  to join the handler.
+
+Verification: 0 `listen-btn`/`btn-speak` refs and 0 "Listen/發音" text remain; delegated
+handler + affordance CSS present; 3 `speakable` nav words; 15 sections balanced; document
+still valid; recording/quiz/Home buttons intact.
+
+Note: the Voice Lab "Recording Challenge" copy still says "Listen to a character above / match
+the Listen button," which is now stale (that section was trimmed to just the Yale tables +
+recorder). Left as-is for now — easy follow-up if you want it reworded.
+
+---
+
+## 2026-06-25 — Reworded recorder, more click-to-speak, punctuation not spoken
+
+1. **Recording Challenge reworded** (Voice Lab) — no longer references "the character above"
+   or "the Listen button" (both gone); now: tap any word on the site to hear it → record →
+   play back and compare.
+2. **Click-to-speak extended to phrases/sentences.** Wrapped the Chinese (only — not the
+   romanization) in `<span class="speakable">` so the existing delegated handler picks them up:
+   - **Sentence Builder Challenge** (好食, 唔好食, 係魚, 唔係魚)
+   - **Pro Tip: Existence Questions** (好唔好, 有無, 我有魚, 我無錢, 有無叉燒包)
+   - **"The 6 Cantonese Tones in Yale"** example words (詩, 史, 試, 時, 市, 是 — Han char only,
+     romanization left unclickable)
+   - **Mini Dialogue: Taking a Taxi** (我想去中環, 好,上車啦, 呢度落車)
+3. **Punctuation no longer pronounced.** `speak()` now strips symbols a TTS voice may read
+   aloud — `/ ／ \ | ~ ^ * _ # @ & < > = + ( ) （ ） [ ] { } 「 」 『 』` — before speaking
+   (collapsing leftover spaces). Commas/periods/question marks are kept (they only affect
+   prosody, not pronounced as words). This means slashes can stay in the text (e.g. radical
+   forms 火 / 灬, meanings like Gold / Metal) for readability without being spoken.
+
+Verification: 21 `.speakable` spans total; `speak()` cleaning present; recorder old copy gone;
+15 sections balanced; single valid document.
+
+**Follow-up (same day):** extended click-to-speak to the **Tenses "Quick Recap"** (each marker
+會/咗/緊/過 and its example 我會去 / 我去咗 / 我食緊飯 / 我去過) and the **Money "Mini Dialogue:
+At the Market"** (呢個幾多錢, 十蚊, 平啲得唔得). The recap examples keep their inner `<b>` emphasis
+inside the `.speakable` wrapper (textContent still reads the full phrase).
